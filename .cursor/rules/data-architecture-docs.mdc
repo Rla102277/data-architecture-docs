@@ -1,0 +1,16 @@
+---
+description: Use when asked for architecture docs, a TDD, ADRs, design docs, an exec brief or roadmap for a data platform, or when editing files under docs/architecture/.
+globs: docs/architecture/**
+alwaysApply: false
+---
+
+Use the `data-architecture-docs` skill for this work.
+
+- Ground first: the facts file `ground:` block (decision, outcome, terrain,
+  falsifiers, owner, single action in one sentence) comes before any doc.
+- `docs/architecture/00-project-facts.yaml` is the single source of truth. Change
+  a fact there first, then update the docs that use it.
+- Same facts across the executive, director and engineer packs. Different altitude only.
+- Mark unknowns as `ASSUMPTION [A-###]` or `OPEN QUESTION [Q-###]`.
+- Mermaid for diagrams. No em dashes.
+- After edits, run the skill's `scripts/validate_docs.py docs/architecture`.

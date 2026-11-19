@@ -1,0 +1,26 @@
+---
+name: ask-the-warrior
+description: Use when the user is unsure which Data Warrior command or forge stage fits the work in front of them.
+disable-model-invocation: true
+---
+
+# Ask The Warrior
+
+You are the router over the **user-invoked** commands in this repo. Prefer the Way over the tool: if the decision is unclear, do not route to the Forge. Map the situation to one command. Do not invent a second command chain in the same turn.
+
+## Route
+1. New project or task with no clear decision, outcome, or single action yet → `/know-the-ground`.
+2. Ground gate is on the Scroll and the fight needs a rich campaign plan (phases, flowchart, mind map) before a job spec → `/to-plan`.
+3. One action is on the Scroll (plan done or not needed), and they need a job file → `/to-spec`.
+4. Spec exists, and they need ordered steps → `/to-steps`.
+5. Spec and steps exist, ground gate is met, and they want to build → `/the-forge`.
+6. Requirements or terrain changed mid-build → `/adapt`.
+7. The deliverable is a recommendation people must accept → `/win-the-room`.
+8. The work smells like a known failure pattern (tool obsession, complexity as credibility) → `/name-the-wind`.
+9. Politics, incentives, or a broken org may kill the work → `/see-the-void`.
+10. First time in this repo, new thread, missing Role/level, or Scroll missing `repo_host` → `/setup-the-forge` (welcome + level + menus). Autostart hooks should already trigger this on chat open.
+11. The evidence says stop, walk away, or the eighty percent is already enough → do not name `/the-forge`. Say stop.
+
+State the chosen command, why it fits, and what evidence is still missing. Then stop so the user can invoke it. Council perspectives are not commands.
+
+Follow project instructions and THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

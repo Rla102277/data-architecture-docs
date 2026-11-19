@@ -1,0 +1,156 @@
+# 00-project-facts.yaml
+# Single source of truth for every doc in docs/architecture/.
+# Docs reference these values. Change a fact here first, then update docs.
+facts_version: 0.1.0
+last_updated: YYYY-MM-DD
+
+project:
+  name: null                # e.g. "Foundation"
+  code: null                # short code used in names, e.g. "fdn"
+  one_line_problem: null
+  one_line_outcome: null
+  sponsor: { name: null, role: null }
+  owner: { name: null, role: null }
+  mode: greenfield          # greenfield | brownfield | refresh
+  in_scope: []
+  out_of_scope: []
+
+ground:                     # Data Warrior ground gate. No docs until filled.
+  decision: null            # what decision this makes clearer, and for whom
+  outcome: null             # what changes in the business if it works
+  terrain: []               # non-negotiable constraints
+  falsifiers: []            # evidence that would prove the approach wrong, early
+  owner: null               # one person or role who owns the outcome
+  single_action: null       # one sentence: what must someone do right now
+  source: null              # interview | SCROLL.md | brief
+
+business_kpis:              # how success is measured
+  - id: KPI-001
+    name: null
+    baseline: null
+    target: null
+    measured_by: null
+
+stakeholders:
+  - role: null
+    name: null
+    interest: null          # what they need from the platform
+
+requirements:               # functional
+  - id: REQ-001
+    statement: null
+    priority: must          # must | should | could
+    source: null            # who asked
+
+nfrs:
+  - id: NFR-001
+    category: freshness     # freshness | availability | performance | recovery | retention | security | scalability | cost
+    statement: null
+    target: null
+    measured_by: null       # TST-### or monitor name
+
+sources:
+  - id: SRC-001
+    name: null
+    system_type: null       # ERP | CRM | RDBMS | SaaS API | files | stream
+    owner: null
+    access_method: null     # CDC | watermark | full | API | file drop | share | mirroring
+    volume_rows: null
+    daily_change_rows: null
+    sensitivity: []         # PII | PCI | PHI | financial | confidential | public
+    refresh_need: null
+
+platform:
+  cloud: null
+  region: null
+  primary: null             # Fabric | Snowflake | Databricks | ...
+  storage_format: null      # Delta | Iceberg | native
+  layering: null            # medallion | data-vault+medallion | ...
+  transform: null           # dbt | Spark | SQL
+  orchestration: null
+  bi: null
+  catalog_governance: null
+  source_control: null
+  environments: [dev, test, prod]
+
+data_products:
+  - id: DP-001
+    name: null
+    owner: null
+    consumers: []
+    grain: null
+    freshness_nfr: NFR-001
+    sources: [SRC-001]
+
+pipelines:
+  - id: PL-001
+    name: null
+    source: SRC-001
+    pattern: null           # CDC | watermark | full | API | file
+    schedule: null
+    target_layer: bronze
+    owner: null
+
+decisions:                  # mirrors ADR files
+  - id: ADR-0001
+    title: null
+    status: proposed        # proposed | accepted | superseded | rejected
+    choice: null
+    one_line_why: null
+
+costs:                      # show basis, always
+  price_date: null
+  currency: USD
+  one_time:
+    - item: null
+      amount: null
+      basis: null
+  annual_run:
+    - item: null
+      amount: null
+      basis: null           # unit price x volume x frequency
+  totals:
+    one_time: null
+    annual_run: null
+
+timeline:
+  start: null
+  phases:
+    - id: PH-1
+      name: null
+      start: null
+      end: null
+      exit_criteria: []
+      value_delivered: null
+
+team:
+  - role: null
+    name: null
+    allocation_pct: null
+    status: existing        # existing | hire | contractor
+
+risks:
+  - id: RSK-001
+    type: technical         # technical | delivery | security | compliance | void (incentives, power, culture, adoption)
+    statement: null
+    likelihood: null        # low | medium | high
+    impact: null
+    owner: null
+    mitigation: null
+    status: open
+
+assumptions:
+  - id: A-001
+    statement: null
+    validate_by: null
+
+open_questions:
+  - id: Q-001
+    question: null
+    owner: null
+    needed_by: null
+    status: open
+
+glossary:
+  - term: null
+    definition: null

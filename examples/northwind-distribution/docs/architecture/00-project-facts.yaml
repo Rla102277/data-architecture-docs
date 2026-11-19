@@ -1,0 +1,122 @@
+# Fictional example. Partial facts file showing the ground gate and key facts.
+facts_version: 0.1.0
+last_updated: 2026-11-19
+
+project:
+  name: Atlas
+  code: atl
+  one_line_problem: Margin by customer and SKU takes two analysts a week of spreadsheet work each month and does not tie to the GL.
+  one_line_outcome: Daily, reconciled margin by customer and SKU in Power BI.
+  sponsor: { name: null, role: CFO }
+  owner: { name: null, role: Director of Data }
+  mode: greenfield
+
+ground:
+  decision: Which customers and SKUs to reprice before annual contract renewals (VP Sales and CFO).
+  outcome: Renewals priced on real margin; target +1.5 points gross margin on renewed contracts (KPI-001).
+  terrain:
+    - Two-person team plus one contractor for 6 months
+    - Power BI and Microsoft 365 E5 already owned
+    - SOX-relevant financials; PII in ERP and CRM contacts
+    - April renewal cycle is the forcing event
+  falsifiers:
+    - Margin by customer does not reconcile to the GL within 0.5% by Feb 28
+    - Sales leadership does not use the margin report in the first two renewal reviews
+  owner: CFO
+  single_action: Approve $180K and a two-person team by Jan 15 so margin by customer and SKU is ready for the April renewal cycle.
+  source: brief
+
+business_kpis:
+  - id: KPI-001
+    name: Gross margin on renewed contracts
+    baseline: 21.0%
+    target: 22.5%
+    measured_by: Finance monthly margin report
+  - id: KPI-002
+    name: Analyst hours per month on margin spreadsheets
+    baseline: 80
+    target: 8
+    measured_by: Finance time tracking
+
+nfrs:
+  - id: NFR-001
+    category: freshness
+    statement: Margin data available by 06:00 Central on business days
+    target: "06:00 America/Chicago"
+    measured_by: TST-010
+  - id: NFR-002
+    category: accuracy
+    statement: Margin by customer reconciles to GL revenue and COGS
+    target: within 0.5% monthly
+    measured_by: TST-020
+
+sources:
+  - id: SRC-001
+    name: ERP
+    system_type: RDBMS
+    access_method: CDC
+    sensitivity: [PII, financial]
+  - id: SRC-002
+    name: WMS
+    system_type: files
+    access_method: file drop
+    sensitivity: []
+  - id: SRC-003
+    name: CRM
+    system_type: SaaS API
+    access_method: API
+    sensitivity: [PII]
+
+decisions:
+  - id: ADR-0001
+    title: Platform
+    status: proposed
+    choice: Microsoft Fabric F8 capacity
+    one_line_why: Uses owned Power BI and Entra ID; smallest team can operate it; Delta keeps data portable.
+
+costs:
+  price_date: 2026-11-19
+  currency: USD
+  totals:
+    one_time: 180000
+    annual_run: 62000
+
+timeline:
+  start: 2026-01-15
+  phases:
+    - id: PH-1
+      name: Margin foundation
+      start: 2026-01-15
+      end: 2026-03-31
+      exit_criteria: [NFR-002 met for January and February, Sales leadership walkthrough done]
+      value_delivered: Reconciled margin by customer and SKU for April renewals
+
+risks:
+  - id: RSK-001
+    type: technical
+    statement: Freight and rebate cost allocation rules are undocumented and live in one analyst's spreadsheet
+    likelihood: high
+    impact: high
+    owner: Controller
+    mitigation: Document allocation rules in February as a data contract; reconcile before scaling
+    status: open
+  - id: RSK-002
+    type: void
+    statement: Account managers may resist repricing their own accounts if margin data exposes them
+    likelihood: medium
+    impact: high
+    owner: VP Sales
+    mitigation: VP Sales owns the rollout; first reviews use regional, not per-rep, views
+    status: open
+
+assumptions:
+  - id: A-001
+    statement: ERP SQL Server change tracking can be enabled on the order and invoice tables
+    validate_by: 2026-01-31
+
+open_questions:
+  - id: Q-001
+    question: Is the $62K annual run budget in the FY27 IT plan or new spend?
+    owner: CFO
+    needed_by: 2026-01-15
+    status: open

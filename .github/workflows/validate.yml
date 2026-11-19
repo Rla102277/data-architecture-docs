@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify repo structure
+        run: python3 scripts/verify_repo.py
+      - name: Validator unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Install smoke test
+        run: |
+          T="$(mktemp -d)"
+          scripts/install.sh --target "$T"
+          test -f "$T/.claude/skills/data-architecture-docs/SKILL.md"
+          test -f "$T/.claude/skills/data-architecture-docs/reviewers/council.md"
+          test -f "$T/.claude/skills/data-warrior/THE_WAY.md"
+          test -f "$T/.claude/skills/gordonmurray/iceberg/SKILL.md"
