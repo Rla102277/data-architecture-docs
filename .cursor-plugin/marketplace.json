@@ -1,0 +1,30 @@
+{
+  "name": "data-architecture-docs",
+  "owner": {
+    "name": "Randy Archambault"
+  },
+  "metadata": {
+    "description": "Data engineering architecture toolkit: persona-tiered design docs, The Data Warrior, and expert lakehouse and streaming skills.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "data-architecture-docs",
+      "source": "./plugins/data-architecture-docs",
+      "description": "Persona-tiered design docs for data platforms: architecture overview, TDD, ADRs, data model, pipeline specs, contracts, governance, delivery and cost, written for the CDO/CIO, the Data Director and the Lead Data Engineer from one facts file, grounded first and reviewed by read-only subagents.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "data-warrior",
+      "source": "./plugins/data-warrior",
+      "description": "The Data Warrior skills (skills only): ground the decision before the build, study trade-offs, win the room, read the void. The full Forge plugin lives upstream.",
+      "version": "0.0.0-upstream.3f55283"
+    },
+    {
+      "name": "gordonmurray-data-engineering",
+      "source": "./plugins/gordonmurray-data-engineering",
+      "description": "Deep, dated expert skills for Apache Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn and Docker Compose, by Gordon Murray.",
+      "version": "0.0.0-upstream.4d8f511"
+    }
+  ]
+}

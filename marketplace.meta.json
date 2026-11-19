@@ -1,0 +1,11 @@
+{
+  "_comment": "Source for .claude-plugin/marketplace.json and .cursor-plugin/marketplace.json. Plugins are discovered from plugins/. Run: python3 scripts/build.py",
+  "name": "data-architecture-docs",
+  "owner": {
+    "name": "Randy Archambault"
+  },
+  "metadata": {
+    "description": "Data engineering architecture toolkit: persona-tiered design docs, The Data Warrior, and expert lakehouse and streaming skills.",
+    "version": "1.0.0"
+  }
+}

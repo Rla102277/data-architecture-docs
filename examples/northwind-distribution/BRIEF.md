@@ -3,7 +3,7 @@
 A worked example of the kickoff brief and the start of the doc set. The company,
 people and numbers are invented. It shows the facts file, a filled executive
 brief and a CIO reader review, so you can see the altitude and the consistency
-the skill aims for. It is intentionally partial: run the skill to get the rest.
+the skill aims for. It covers the executive pack only; run the plugin on a real project to get all three packs.
 
 - **Project / code:** Atlas / atl
 - **Decision this makes clearer:** which customers and SKUs to reprice before the

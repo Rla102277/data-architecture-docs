@@ -1,0 +1,49 @@
+{
+  "name": "data-warrior",
+  "version": "0.0.0-upstream.3f55283",
+  "description": "The Data Warrior skills (skills only): ground the decision before the build, study trade-offs, win the room, read the void. The full Forge plugin lives upstream.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "repository": "https://github.com/Rla102277/The-data-warrior-agent",
+  "license": "MIT",
+  "keywords": [
+    "data-engineering",
+    "strategy",
+    "grounding",
+    "data-warrior"
+  ],
+  "skills": [
+    "./skills/fire/win-the-room",
+    "./skills/forge/chart-the-path",
+    "./skills/forge/draw-the-blade",
+    "./skills/forge/lessons-of-battle",
+    "./skills/forge/review-the-work",
+    "./skills/forge/sharpen-the-blade",
+    "./skills/forge/test-the-steel",
+    "./skills/forge/the-contract",
+    "./skills/forge/the-forge",
+    "./skills/forge/the-pipeline",
+    "./skills/forge/to-plan",
+    "./skills/forge/to-spec",
+    "./skills/forge/to-steps",
+    "./skills/ground/grounding",
+    "./skills/ground/know-the-ground",
+    "./skills/ground/simplicity",
+    "./skills/ground/survey-the-ground",
+    "./skills/ground/tool-choice",
+    "./skills/practice/the-battle-map",
+    "./skills/practice/the-challenge",
+    "./skills/practice/the-scroll",
+    "./skills/void/see-the-void",
+    "./skills/void/void-sight",
+    "./skills/water/adapt",
+    "./skills/water/ship-the-eighty",
+    "./skills/water/the-pivot",
+    "./skills/way/ask-the-warrior",
+    "./skills/way/setup-the-forge",
+    "./skills/wind/name-the-wind",
+    "./skills/wind/study-the-wind",
+    "./skills/wind/wind-patterns"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "_comment": "Upstream skill repos vendored as plugins under plugins/<plugin>. Edit here, then run: python3 scripts/sync_upstream.py",
+  "upstreams": [
+    {
+      "plugin": "data-warrior",
+      "repo": "https://github.com/Rla102277/The-data-warrior-agent.git",
+      "skills_dir": "skills",
+      "extras": ["THE_WAY.md", "WELCOME.md", "LICENSE", "docs/ROLE-BEHAVIOR.md", "docs/PARITY.md"],
+      "description": "The Data Warrior skills (skills only): ground the decision before the build, study trade-offs, win the room, read the void. The full Forge plugin lives upstream.",
+      "author": "Randy Archambault",
+      "license": "MIT",
+      "keywords": ["data-engineering", "strategy", "grounding", "data-warrior"]
+    },
+    {
+      "plugin": "gordonmurray-data-engineering",
+      "repo": "https://github.com/gordonmurray/data-engineering-skills.git",
+      "skills_dir": ".",
+      "extras": ["LICENSE", "README.md"],
+      "description": "Deep, dated expert skills for Apache Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn and Docker Compose, by Gordon Murray.",
+      "author": "Gordon Murray",
+      "license": "MIT",
+      "keywords": ["iceberg", "flink", "paimon", "fluss", "lance", "streaming", "lakehouse"]
+    }
+  ]
+}

@@ -2,8 +2,13 @@
 
 | Example | What it shows |
 |---|---|
-| [northwind-distribution](northwind-distribution/BRIEF.md) | Fictional distributor. Kickoff brief, a facts file with a full ground gate, a filled executive brief in the win-the-room shape, and a CIO reader review that catches real issues. |
+| [northwind-distribution](northwind-distribution/BRIEF.md) | Fictional distributor. Kickoff brief, a facts file with a full ground gate, a complete executive pack (EXE-01..04) in the win-the-room shape, and a CIO reader review with real findings. |
 
-Examples are deliberately partial: they show altitude, consistency and the
-ground gate, not a full set. The validator will report the missing executive
-docs if you run it against one. All companies, people and numbers are invented.
+The example covers the executive pack only, and passes the linter:
+
+```bash
+python3 plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py \
+  examples/northwind-distribution/docs/architecture --packs executive
+```
+
+All companies, people and numbers are invented.

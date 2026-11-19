@@ -2,139 +2,101 @@
 
 **Technical completion is not strategic success.**
 
-A skills toolkit for data engineering architecture work in Cursor, Claude Code
-and Codex. The core skill, `data-architecture-docs`, turns a data project into a
-full design doc set (architecture overview, TDD, ADRs, data model, pipeline
-specs, contracts, test strategy, CI/CD, security, runbook, governance, delivery
-plan, cost model) written three ways:
+A plugin marketplace for data engineering architecture work in Claude Code and
+Cursor. The core plugin turns a data project into a full design doc set,
+written three ways from one facts file, so the CIO brief and the engineer's TDD
+never disagree on a number:
 
-| Persona | Gets | Reads it for |
+| Reader | Gets | Reads it to |
 |---|---|---|
-| **CDO / CIO** | 4 short docs, brief first | Fund it, sequence it, accept the risk, or stop |
-| **Data Director** | 6 docs, tables over prose | Scope, team, governance, SLAs, cost |
-| **Lead Data Engineer** | 9 docs plus ADRs | Build it without a meeting |
+| **CDO / CIO** | 4 short docs, a 2-page brief first | Fund it, sequence it, accept the risk, or stop |
+| **Data Director** | 6 docs, tables over prose | Own scope, team, governance, SLAs and cost |
+| **Lead Data Engineer** | 9 docs plus ADRs and contracts | Build it without a meeting |
 
-All three packs come from one facts file, so the CIO brief and the TDD never
-disagree on a number. Nothing gets written until the **ground gate** (from The
-Data Warrior) is filled: the decision, the outcome, the owner, what would prove
-us wrong, and the single action in one sentence.
+Nothing gets written until the **ground gate** is filled: the decision, the
+outcome, the owner, what would prove us wrong, and the single action in one
+sentence. Then read-only reviewer subagents check each pack the way its real
+reader will.
+
+## Install
+
+**Claude Code** (one step):
+
+```
+/plugin install data-architecture-docs --marketplace Rla102277/data-architecture-docs
+```
+
+**Cursor** (local plugin copy; Cursor skips symlinks):
+
+```bash
+git clone https://github.com/Rla102277/data-architecture-docs.git ~/Documents/projects/code/data-architecture-docs
+cd ~/Documents/projects/code/data-architecture-docs
+python3 scripts/install.py cursor
+```
+
+Then **Developer: Reload Window**. Other options (one project, Codex, picking
+plugins) are in [docs/INSTALL.md](docs/INSTALL.md).
+
+## Use
+
+Type `/architecture-docs`, or ask for "architecture docs and a TDD for this
+project". For the best first run, paste the
+[kickoff prompt](plugins/data-architecture-docs/skills/architecture-docs/KICKOFF_PROMPT.md)
+with the brief filled in. How the flow works: [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
+
+## Plugins
+
+| Plugin | What it gives you | Source |
+|---|---|---|
+| [data-architecture-docs](plugins/data-architecture-docs/) | 9 skills and 9 reviewer subagents for the persona-tiered doc set | This repo |
+| [data-warrior](plugins/data-warrior/) | 31 Data Warrior skills: ground the decision, study trade-offs, win the room, read the void | [The-data-warrior-agent](https://github.com/Rla102277/The-data-warrior-agent), synced |
+| [gordonmurray-data-engineering](plugins/gordonmurray-data-engineering/) | Dated expert skills for Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn, Docker Compose | [gordonmurray/data-engineering-skills](https://github.com/gordonmurray/data-engineering-skills), synced |
+
+Each installs on its own. The core plugin uses the others when they are present
+and never requires them.
 
 ## Repository layout
 
 ```
 data-architecture-docs/
-+-- skills/                     # Everything an agent loads
-|   +-- data-architecture-docs/ # Core skill: persona-tiered doc set from one facts file
-|   |   +-- SKILL.md            # Orchestrator: ground gate, phases, rules, length targets
-|   |   +-- KICKOFF_PROMPT.md   # Paste-ready prompt with project brief
-|   |   +-- references/         # Personas, doc catalog, discovery, stack profiles, diagrams, gates
-|   |   +-- templates/          # Doc templates by pack (executive, director, engineer, shared)
-|   |   +-- assets/             # project-facts.template.yaml
-|   |   +-- reviewers -> ../../agents
-|   |   `-- scripts/            # validate_docs.py (docs linter, CI-ready)
-|   +-- data-warrior/           # The Data Warrior: 31 skills by ring (vendored, synced)
-|   `-- gordonmurray/           # Iceberg, Paimon, Fluss, Flink, Iggy, Lance, Firn, Compose (vendored)
-+-- agents/                     # Review personas: CIO / Director / Lead DE readers, Council, specialists
-+-- templates/                  # Shared YAML templates
-|   +-- contracts/              # Source, dataset, metric contracts
-|   `-- plans/                  # Backfill, schema change, release gate evidence
-+-- examples/                   # Fictional worked example (brief, facts, exec brief, review)
-+-- scripts/                    # install.sh, sync-upstream.sh, verify_repo.py
-+-- tests/                      # Validator unit tests
-+-- .claude/skills -> ../skills # Opening this repo loads every skill (Claude Code + Cursor)
-+-- .cursor/rules/              # Rule that routes docs/architecture/ work to the skill
-+-- .github/workflows/          # Verify, test, install smoke test
-+-- AGENTS.md                   # Entry point for any agent working in this repo
-+-- CLAUDE.md                   # Claude Code entry point
-`-- THIRD_PARTY_NOTICES.md      # Upstream sources and licenses
++-- .claude-plugin/marketplace.json   # Claude Code marketplace (generated)
++-- .cursor-plugin/marketplace.json   # Cursor marketplace (generated)
++-- marketplace.meta.json             # Source for both marketplace files
++-- plugins/
+|   +-- data-architecture-docs/       # First-party plugin
+|   |   +-- skills/                   # architecture-docs (orchestrator), project-facts,
+|   |   |                             #   architecture-decision, engineer-pack, director-pack,
+|   |   |                             #   executive-pack, data-contracts, validate-, review-
+|   |   +-- agents/                   # 9 read-only reviewer subagents
+|   |   +-- rules/                    # Cursor rule for docs/architecture/**
+|   |   +-- shared/conventions.md     # Canonical conventions, built into every skill
+|   |   `-- plugin.meta.json          # Source for both plugin manifests
+|   +-- data-warrior/                 # Vendored from upstream, do not edit
+|   `-- gordonmurray-data-engineering/ # Vendored from upstream, do not edit
++-- examples/                         # Fictional worked example
++-- docs/                             # INSTALL, HOW-IT-WORKS
++-- scripts/
+|   +-- install.py                    # Cursor, Claude Code or skills-only install
+|   +-- build.py                      # Generate manifests and conventions copies
+|   +-- sync_upstream.py              # Re-vendor upstream plugins (upstreams.json)
+|   `-- verify_repo.py                # Structural checks, run in CI
++-- tests/                            # Docs linter tests
++-- .github/workflows/validate.yml    # Build check, verify, tests, install smoke tests
++-- AGENTS.md / CLAUDE.md             # Rules for agents working on this repo
++-- CHANGELOG.md
+`-- THIRD_PARTY_NOTICES.md
 ```
 
-## What the skill produces
-
-```
-docs/architecture/
-+-- 00-project-facts.yaml   # Single source of truth, ground gate first
-+-- README.md               # Single action, reading guide by persona, index, open questions
-+-- executive/              # EXE-01..04: brief, strategic overview, investment + roadmap, risk
-+-- director/               # DIR-01..06: solution arch, RACI, governance, DQ/SLA, delivery, cost
-+-- engineer/               # ENG-01..09: TDD, data model, pipelines, tests, CI/CD, security, runbook
-|   +-- adr/                # Decision records: options, status quo, steelman, validation test
-|   `-- ENG-04-data-contracts/  # Source / dataset / metric contract YAML
-+-- reviews/                # Reader, specialist and Council verdicts
-`-- shared/                 # Glossary, traceability matrix, RAID log (with void risks)
-```
-
-## Install
-
-Clone once, then install into a project or your user profile.
+## Develop
 
 ```bash
-git clone https://github.com/Rla102277/data-architecture-docs.git
-cd data-architecture-docs
-
-# One project (works in Claude Code AND Cursor):
-scripts/install.sh --target ~/Documents/projects/code/my-data-project
-
-# Everywhere on this machine, linked so `git pull` keeps it current:
-scripts/install.sh --global --symlink
-
-# Cursor-only folder, just the docs skill:
-scripts/install.sh --tool cursor --target <project> --skills docs
+python3 scripts/build.py            # after editing conventions or *.meta.json
+python3 scripts/verify_repo.py      # structure, names, links, manifests
+python3 -m unittest discover -s tests
+python3 scripts/sync_upstream.py    # pull upstream plugin changes
+claude plugin validate .            # Claude Code's own validator
+claude --plugin-dir plugins/data-architecture-docs   # try the plugin locally
 ```
-
-`--skills` takes `all` (default) or any of `docs,warrior,gordonmurray`.
-`--tool` takes `claude` (default, `.claude/skills`, read by Claude Code and
-Cursor), `cursor` (`.cursor/skills`) or `codex` (`.agents/skills`). Install for
-one of claude or cursor, not both, or Cursor lists every skill twice.
-
-## Use
-
-In Cursor Agent or Claude Code, type `/data-architecture-docs` or ask for
-"architecture docs and a TDD for this project". For best results paste
-[KICKOFF_PROMPT.md](skills/data-architecture-docs/KICKOFF_PROMPT.md) with the
-brief filled in. The skill runs:
-
-1. **Ground gate**, one question per turn: decision, outcome, terrain, falsifiers, owner, single action
-2. **Discovery**: survey the repo, then batched questions with defaults
-3. **Facts file** checkpoint: you correct it before any doc is written
-4. **ADRs first**, study-the-wind style
-5. **Packs bottom-up**: engineer, director, executive, shared
-6. **Validate**: linter, persona consistency check, wind patterns
-7. **Review**: reader personas, specialists, Council lenses, honest about independence
-8. **Hand-off**: single action, open questions, top risks
-
-If the target repo has `Role: Deshi | Rōnin | Kensei` in its `AGENTS.md`, the
-skill teaches, acts or anticipates accordingly. Roles never grant permissions.
-
-## Companion skills
-
-| Set | Use it for |
-|---|---|
-| **The Data Warrior** (`skills/data-warrior/`) | Grounding before building (`know-the-ground`), architecture trade-offs (`study-the-wind`), decision asks (`win-the-room`), politics and incentives (`void-sight`), contracts, pipelines, testing, failure patterns. The Forge CLI lives upstream. |
-| **gordonmurray** (`skills/gordonmurray/`) | Deep, dated guidance for Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn and Docker Compose |
-| **Review personas** (`agents/`) | CIO, Director and Lead DE readers; the Council's six lenses; vaquarkhan's architect, analytics engineer, reliability, infrastructure and security reviewers |
-
-Vendored sets stay canonical upstream. To update:
-
-```bash
-scripts/sync-upstream.sh               # all
-scripts/sync-upstream.sh data-warrior  # one
-```
-
-Add another upstream by adding a line to `scripts/upstreams.conf`.
-
-## Validate
-
-```bash
-python3 skills/data-architecture-docs/scripts/validate_docs.py docs/architecture  # a doc set
-python3 scripts/verify_repo.py                                                     # this repo
-python3 -m unittest discover -s tests                                              # validator tests
-```
-
-The doc validator fails on missing docs, an empty ground gate, missing front
-matter, leftover placeholders, undefined IDs, untagged assumptions, broken
-Mermaid fences, exec docs over their word ceiling and reviews without a verdict.
-It warns on em dashes, filler phrases, missing reviews and self-set approvals.
 
 ## Credits
 

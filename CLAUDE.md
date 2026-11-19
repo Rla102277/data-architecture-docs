@@ -2,10 +2,14 @@
 
 Role: Rōnin
 
-Read AGENTS.md. Same rules apply to Claude Code.
+Read AGENTS.md. Same rules apply.
 
-Skills for this repo are exposed through `.claude/skills -> ../skills`, which
-Claude Code and Cursor both read, so opening this repo loads every skill here.
+Try the plugin from this checkout without installing:
 
-Before committing: `python3 scripts/verify_repo.py` and
-`python3 -m unittest discover -s tests`.
+```bash
+claude --plugin-dir plugins/data-architecture-docs
+```
+
+Before committing: `python3 scripts/build.py --check`,
+`python3 scripts/verify_repo.py`, `python3 -m unittest discover -s tests`,
+and `claude plugin validate .`.

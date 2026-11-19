@@ -7,7 +7,7 @@ version: 0.1.0
 owner: Director of Data
 last_updated: 2026-11-19
 facts_version: 0.1.0
-related: [ADR-0001]
+related: [EXE-02, EXE-03, EXE-04, ADR-0001]
 ---
 
 # Atlas: Executive Brief
@@ -16,7 +16,7 @@ related: [ADR-0001]
 Approve $180K and a two-person team by Jan 15 so margin by customer and SKU is ready for the April renewal cycle.
 
 ## Bottom line
-We recommend building a small, governed data platform on Microsoft Fabric. It
+We recommend building a small, governed data platform on Microsoft Fabric (recommended in ADR-0001, pending your approval). It
 costs $180K to build and $62K a year to run, and gives Finance and Sales a
 reconciled margin report by customer and SKU before April renewals.
 
@@ -47,7 +47,7 @@ pick a heavier platform than this team can run, we miss April entirely.
 
 Early warning: if margin does not reconcile to the ledger within 0.5% by Feb 28,
 we stop and fix cost allocation before building anything else. If Sales
-leadership does not use the report in the first two renewal reviews, we have a
+leadership does not use the report in the first two renewal reviews, we have an
 adoption problem, not a data problem, and we will say so.
 
 ## Cost and timeline

@@ -7,24 +7,26 @@ source commit.
 ## The Data Warrior
 - Source: https://github.com/Rla102277/The-data-warrior-agent
 - License: MIT, Copyright (c) 2026 THE DATA WARRIOR contributors
-- Included: `skills/data-warrior/` (31 skills, THE_WAY.md, WELCOME.md, ROLE-BEHAVIOR.md), synced by `scripts/sync-upstream.sh`
+- Included: `plugins/data-warrior/` (31 skills, THE_WAY.md, WELCOME.md, ROLE-BEHAVIOR.md, PARITY.md), synced by `scripts/sync_upstream.py`
 - Adapted ideas (rewritten, not copied): ground gate, study-the-wind ADR discipline, win-the-room brief shape, void risks, Council lenses, Deshi / Rōnin / Kensei roles
 
 ## gordonmurray/data-engineering-skills
 - Source: https://github.com/gordonmurray/data-engineering-skills
 - License: MIT, Copyright (c) 2025 Gordon Murray. Note: the `firn` skill's front matter declares `license: Apache-2.0`; follow that for that skill.
-- Included: `skills/gordonmurray/` (9 skills), synced by `scripts/sync-upstream.sh`
+- Included: `plugins/gordonmurray-data-engineering/` (9 skills), synced by `scripts/sync_upstream.py`
 
 ## vaquarkhan/data-engineering-agent-skills
 - Source: https://github.com/vaquarkhan/data-engineering-agent-skills
 - License: MIT, Copyright (c) 2026
+- Included, modified (YAML front matter and an Output section added so they run as read-only subagents):
+  `plugins/data-architecture-docs/agents/data-architect.md`, `analytics-engineer-reviewer.md`,
+  `data-platform-reliability-reviewer.md`, `data-platform-infrastructure-reviewer.md`,
+  `data-security-and-compliance-auditor.md`
 - Included unchanged:
-  - `agents/data-architect.md`, `agents/analytics-engineer-reviewer.md`,
-    `agents/data-platform-reliability-reviewer.md`,
-    `agents/data-platform-infrastructure-reviewer.md`,
-    `agents/data-security-and-compliance-auditor.md`
-  - `templates/contracts/source-contract.yaml`, `dataset-contract.yaml`, `metric-contract.yaml`
-  - `templates/plans/backfill-plan.yaml`, `schema-change-plan.yaml`, `release-gate-evidence.yaml`
+  `plugins/data-architecture-docs/skills/data-contracts/assets/source-contract.yaml`,
+  `dataset-contract.yaml`, `metric-contract.yaml`;
+  `plugins/data-architecture-docs/skills/engineer-pack/assets/plans/backfill-plan.yaml`,
+  `schema-change-plan.yaml`, `release-gate-evidence.yaml`
 
 ## MADR
 - Source: https://github.com/adr/madr

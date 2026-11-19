@@ -1,0 +1,19 @@
+{
+  "name": "gordonmurray-data-engineering",
+  "version": "0.0.0-upstream.4d8f511",
+  "description": "Deep, dated expert skills for Apache Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn and Docker Compose, by Gordon Murray.",
+  "author": {
+    "name": "Gordon Murray"
+  },
+  "repository": "https://github.com/gordonmurray/data-engineering-skills",
+  "license": "MIT",
+  "keywords": [
+    "iceberg",
+    "flink",
+    "paimon",
+    "fluss",
+    "lance",
+    "streaming",
+    "lakehouse"
+  ]
+}

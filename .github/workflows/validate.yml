@@ -13,15 +13,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generated files are up to date
+        run: python3 scripts/build.py --check
       - name: Verify repo structure
         run: python3 scripts/verify_repo.py
-      - name: Validator unit tests
+      - name: Docs linter tests
         run: python3 -m unittest discover -s tests -v
-      - name: Install smoke test
+      - name: Worked example passes the linter
+        run: python3 plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py examples/northwind-distribution/docs/architecture --packs executive
+
+      - name: Claude Code plugin validation
         run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .
+          for p in plugins/*/; do claude plugin validate "$p"; done
+
+      - name: Install smoke tests
+        run: |
+          export HOME="$(mktemp -d)"
+          python3 scripts/install.py cursor
+          test -f "$HOME/.cursor/plugins/local/data-architecture-docs/.cursor-plugin/plugin.json"
+          test -f "$HOME/.cursor/plugins/local/data-architecture-docs/skills/architecture-docs/SKILL.md"
           T="$(mktemp -d)"
-          scripts/install.sh --target "$T"
-          test -f "$T/.claude/skills/data-architecture-docs/SKILL.md"
-          test -f "$T/.claude/skills/data-architecture-docs/reviewers/council.md"
-          test -f "$T/.claude/skills/data-warrior/THE_WAY.md"
-          test -f "$T/.claude/skills/gordonmurray/iceberg/SKILL.md"
+          python3 scripts/install.py skills --target "$T" --tool claude
+          test -f "$T/.claude/skills/architecture-docs/references/conventions.md"
+          test -f "$T/.claude/skills/win-the-room/THE_WAY.md"
+          test -f "$T/.claude/skills/iceberg/SKILL.md"
+          test -f "$T/.claude/agents/cio-reader.md"
+          claude plugin marketplace add "$PWD"
+          claude plugin install data-architecture-docs@data-architecture-docs
