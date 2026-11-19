@@ -1,0 +1,21 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-architecture-docs",
+  "displayName": "DE: Architecture Docs",
+  "version": "2.0.0",
+  "description": "Persona-tiered design docs for data platforms: architecture overview, TDD, ADRs, data model, pipeline specs, contracts, governance, delivery and cost, for the CDO/CIO, the Data Director and the Lead Data Engineer, from one facts file, reviewed by read-only subagents.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": ["data-engineering", "architecture", "tdd", "adr", "documentation"],
+  "icon": "./assets/icon.png",
+  "category": "productivity",
+  "build": {
+    "references": {
+      "conventions.md": "plugins/de-architecture-docs/shared/conventions.md"
+    }
+  }
+}

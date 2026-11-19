@@ -1,0 +1,19 @@
+{
+  "skill": "dbt-project-setup",
+  "plugin": "de-dbt",
+  "scenarios": [
+    {
+      "id": "dbt-setup-1",
+      "prompt": "Set up a new dbt project on Microsoft Fabric Warehouse for our team.",
+      "fixture": null,
+      "must_include": [
+        "dbt-fabric",
+        "env_var|environment variable",
+        "generate_schema_name|schema per developer|dev schema",
+        "stg_",
+        "pin"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

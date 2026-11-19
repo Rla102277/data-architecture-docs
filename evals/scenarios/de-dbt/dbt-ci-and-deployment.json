@@ -1,0 +1,18 @@
+{
+  "skill": "dbt-ci-and-deployment",
+  "plugin": "de-dbt",
+  "scenarios": [
+    {
+      "id": "dbt-ci-1",
+      "prompt": "Our dbt CI rebuilds the whole project on every PR and costs a fortune. Fix it.",
+      "fixture": null,
+      "must_include": [
+        "state:modified\\+",
+        "--defer",
+        "manifest",
+        "schema"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

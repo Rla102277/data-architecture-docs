@@ -1,0 +1,18 @@
+{
+  "skill": "create-data-skill",
+  "plugin": "de-skill-factory",
+  "scenarios": [
+    {
+      "id": "factory-1",
+      "prompt": "Make a skill for reviewing our Snowflake costs every month.",
+      "fixture": null,
+      "must_include": [
+        "Use when",
+        "Failure modes",
+        "eval",
+        "\\?"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "architecture-decision",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "adr-1",
+      "prompt": "We need to decide how to ingest our ERP tables into Fabric. Write the ADR.",
+      "fixture": null,
+      "must_include": [
+        "status quo",
+        "CDC",
+        "watermark",
+        "steelman|strongest",
+        "validation test|revisit"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

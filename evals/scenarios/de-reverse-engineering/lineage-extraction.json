@@ -1,0 +1,19 @@
+{
+  "skill": "lineage-extraction",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "lineage-1",
+      "prompt": "What feeds dw.FactSales? Give me the lineage from the code in this folder.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "src\\.orders",
+        "src\\.order_?lines",
+        "src\\.refunds",
+        "dimcustomer|DimCustomer",
+        "dynamic|sp_executesql|unparsed"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

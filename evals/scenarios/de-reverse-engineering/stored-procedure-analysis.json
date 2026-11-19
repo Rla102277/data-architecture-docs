@@ -1,0 +1,19 @@
+{
+  "skill": "stored-procedure-analysis",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "proc-1",
+      "prompt": "Write me a spec for dbo.usp_LoadSales so we can rebuild it.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "line",
+        "idempot|rerun|run twice",
+        "sp_executesql|dynamic",
+        "NOLOCK",
+        "MERGE"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

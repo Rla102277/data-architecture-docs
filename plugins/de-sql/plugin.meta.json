@@ -1,0 +1,24 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-sql",
+  "displayName": "DE: SQL",
+  "version": "1.0.0",
+  "description": "SQL craft for data engineers on T-SQL, Snowflake and Spark SQL: style and review, performance tuning with plans, refactoring legacy SQL to set-based and CTE form with parity, and testing SQL.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "sql",
+    "t-sql",
+    "snowflake",
+    "spark-sql",
+    "performance",
+    "code-review",
+    "testing"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

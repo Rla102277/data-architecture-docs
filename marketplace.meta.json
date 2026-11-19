@@ -1,11 +1,11 @@
 {
   "_comment": "Source for .claude-plugin/marketplace.json and .cursor-plugin/marketplace.json. Plugins are discovered from plugins/. Run: python3 scripts/build.py",
-  "name": "data-architecture-docs",
+  "name": "data-engineering-factory",
   "owner": {
     "name": "Randy Archambault"
   },
   "metadata": {
-    "description": "Data engineering architecture toolkit: persona-tiered design docs, The Data Warrior, and expert lakehouse and streaming skills.",
-    "version": "1.0.0"
+    "description": "A skill factory for data engineers: reverse engineering, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, persona-tiered architecture docs, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
+    "version": "2.0.0"
   }
 }

@@ -1,0 +1,30 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-skill-factory",
+  "displayName": "DE: Skill Factory",
+  "version": "1.0.0",
+  "description": "Make more data engineering skills to one standard: create a new skill, upgrade a thin skill into a deep one, and eval a skill against a no-skill baseline.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "skill-authoring",
+    "evals",
+    "factory"
+  ],
+  "category": "productivity",
+  "build": {
+    "references": {
+      "skill-standard.md": "factory/SKILL_STANDARD.md"
+    },
+    "files": {
+      "assets/SKILL.md.tmpl": "factory/templates/SKILL.md.tmpl",
+      "assets/eval.json.tmpl": "factory/templates/eval.json.tmpl"
+    }
+  },
+  "icon": "./assets/icon.png"
+}

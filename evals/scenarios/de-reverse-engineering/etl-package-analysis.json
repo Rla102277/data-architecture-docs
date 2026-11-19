@@ -1,0 +1,20 @@
+{
+  "skill": "etl-package-analysis",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "etl-1",
+      "prompt": "Summarize what the packages in etl/ do, in order, and what SQL they run.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "truncate",
+        "usp_LoadSales",
+        "expression|dynamic|run[- ]time",
+        "Copy Orders.*Load Fact|depend"
+      ],
+      "must_not_include": [
+        "NOT-A-REAL-SECRET"
+      ]
+    }
+  ]
+}

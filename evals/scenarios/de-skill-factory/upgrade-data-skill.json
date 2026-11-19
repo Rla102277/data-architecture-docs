@@ -1,0 +1,18 @@
+{
+  "skill": "upgrade-data-skill",
+  "plugin": "de-skill-factory",
+  "scenarios": [
+    {
+      "id": "upgrade-skill-1",
+      "prompt": "The data-warrior study-the-wind skill is only ten lines. Make it actually useful.",
+      "fixture": null,
+      "must_include": [
+        "upstream",
+        "eval|baseline",
+        "name",
+        "Failure modes|Inspect first"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "de-pipelines",
+  "version": "1.0.0",
+  "description": "Pipeline engineering: incremental ingestion (CDC, change tracking, watermarks, snapshots, deletes, late data, schema drift), safe backfill and replay, and Airflow orchestration with dbt.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "pipelines",
+    "ingestion",
+    "cdc",
+    "incremental",
+    "backfill",
+    "airflow",
+    "orchestration"
+  ],
+  "icon": "./assets/icon.png"
+}

@@ -1,0 +1,25 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-reverse-engineering",
+  "displayName": "DE: Reverse Engineering",
+  "version": "1.0.0",
+  "description": "Reverse engineer legacy data systems without running them: SQL Server, Snowflake and Fabric catalog inventory, stored procedure specs, SSIS and ADF/Fabric pipeline analysis, sqlglot table lineage, business rules catalog, profiling, and legacy-to-dbt migration with parity testing.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "reverse-engineering",
+    "legacy",
+    "stored-procedures",
+    "ssis",
+    "adf",
+    "lineage",
+    "sql-server",
+    "migration"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

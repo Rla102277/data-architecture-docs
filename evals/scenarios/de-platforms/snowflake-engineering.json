@@ -1,0 +1,18 @@
+{
+  "skill": "snowflake-engineering",
+  "plugin": "de-platforms",
+  "scenarios": [
+    {
+      "id": "snowflake-1",
+      "prompt": "Our Snowflake bill doubled this quarter. Where do we start?",
+      "fixture": null,
+      "must_include": [
+        "WAREHOUSE_METERING_HISTORY|metering",
+        "auto.?suspend",
+        "resource monitor",
+        "query.?tag"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

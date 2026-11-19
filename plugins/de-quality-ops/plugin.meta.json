@@ -1,0 +1,23 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-quality-ops",
+  "displayName": "DE: Quality and Ops",
+  "version": "1.0.0",
+  "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "data-quality",
+    "reconciliation",
+    "observability",
+    "incident-response",
+    "monitoring",
+    "sox"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "engineer-pack",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "eng-1",
+      "prompt": "Write the TDD for our nightly ERP to warehouse pipelines.",
+      "fixture": null,
+      "must_include": [
+        "grain",
+        "idempot",
+        "late",
+        "backfill",
+        "runbook|failure mode"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

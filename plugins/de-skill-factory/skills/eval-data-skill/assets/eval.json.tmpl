@@ -1,0 +1,17 @@
+{
+  "skill": "{{name}}",
+  "plugin": "{{plugin}}",
+  "scenarios": [
+    {
+      "id": "{{name}}-1",
+      "prompt": "{{a realistic request a data engineer would type}}",
+      "fixture": null,
+      "must_include": [
+        "{{regex of a behavior that proves the skill fired}}"
+      ],
+      "must_not_include": [
+        "{{regex of a known failure mode}}"
+      ]
+    }
+  ]
+}

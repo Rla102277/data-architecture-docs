@@ -1,0 +1,21 @@
+{
+  "skill": "incremental-ingestion",
+  "plugin": "de-pipelines",
+  "scenarios": [
+    {
+      "id": "ingest-1",
+      "prompt": "Set up incremental loads of dbo.Orders from our SQL Server ERP. It has a ModifiedDate column.",
+      "fixture": null,
+      "must_include": [
+        "delet",
+        "overlap|lookback",
+        "after .*commit|only after",
+        "change tracking|CDC|rowversion",
+        "idempot"
+      ],
+      "must_not_include": [
+        "NOLOCK"
+      ]
+    }
+  ]
+}

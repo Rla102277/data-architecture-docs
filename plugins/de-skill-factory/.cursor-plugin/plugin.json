@@ -1,0 +1,20 @@
+{
+  "name": "de-skill-factory",
+  "displayName": "DE: Skill Factory",
+  "version": "1.0.0",
+  "description": "Make more data engineering skills to one standard: create a new skill, upgrade a thin skill into a deep one, and eval a skill against a no-skill baseline.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "skill-authoring",
+    "evals",
+    "factory"
+  ],
+  "skills": "./skills/",
+  "logo": "./assets/icon.png"
+}

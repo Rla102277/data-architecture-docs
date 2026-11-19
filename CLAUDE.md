@@ -4,10 +4,10 @@ Role: Rōnin
 
 Read AGENTS.md. Same rules apply.
 
-Try the plugin from this checkout without installing:
+Try a plugin from this checkout without installing:
 
 ```bash
-claude --plugin-dir plugins/data-architecture-docs
+claude --plugin-dir plugins/de-reverse-engineering --plugin-dir plugins/data-warrior
 ```
 
 Before committing: `python3 scripts/build.py --check`,

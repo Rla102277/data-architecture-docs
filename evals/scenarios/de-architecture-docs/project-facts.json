@@ -1,0 +1,18 @@
+{
+  "skill": "project-facts",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "facts-1",
+      "prompt": "Start the architecture docs for this repo.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "single action|one sentence",
+        "falsif|prove .* wrong",
+        "owner",
+        "\\?"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

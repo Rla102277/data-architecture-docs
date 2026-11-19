@@ -16,15 +16,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Tool dependencies
+        run: pip install sqlglot
 
       - name: Generated files are up to date
         run: python3 scripts/build.py --check
-      - name: Verify repo structure
+      - name: Skill standard, manifests, links, evals
         run: python3 scripts/verify_repo.py
-      - name: Docs linter tests
+      - name: Tool and linter tests
         run: python3 -m unittest discover -s tests -v
-      - name: Worked example passes the linter
-        run: python3 plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py examples/northwind-distribution/docs/architecture --packs executive
+      - name: Worked example passes the docs linter
+        run: python3 plugins/de-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py examples/northwind-distribution/docs/architecture --packs executive
+      - name: Eval plan builds
+        run: python3 scripts/run_evals.py --dry-run
 
       - name: Claude Code plugin validation
         run: |
@@ -36,13 +40,12 @@ jobs:
         run: |
           export HOME="$(mktemp -d)"
           python3 scripts/install.py cursor
-          test -f "$HOME/.cursor/plugins/local/data-architecture-docs/.cursor-plugin/plugin.json"
-          test -f "$HOME/.cursor/plugins/local/data-architecture-docs/skills/architecture-docs/SKILL.md"
+          test -f "$HOME/.cursor/plugins/local/de-reverse-engineering/.cursor-plugin/plugin.json"
           T="$(mktemp -d)"
           python3 scripts/install.py skills --target "$T" --tool claude
-          test -f "$T/.claude/skills/architecture-docs/references/conventions.md"
+          test -f "$T/.claude/skills/lineage-extraction/scripts/extract_lineage.py"
           test -f "$T/.claude/skills/win-the-room/THE_WAY.md"
           test -f "$T/.claude/skills/iceberg/SKILL.md"
           test -f "$T/.claude/agents/cio-reader.md"
           claude plugin marketplace add "$PWD"
-          claude plugin install data-architecture-docs@data-architecture-docs
+          claude plugin install de-reverse-engineering@data-engineering-factory

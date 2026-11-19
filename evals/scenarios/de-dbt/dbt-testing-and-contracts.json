@@ -1,0 +1,19 @@
+{
+  "skill": "dbt-testing-and-contracts",
+  "plugin": "de-dbt",
+  "scenarios": [
+    {
+      "id": "dbt-tests-1",
+      "prompt": "What tests should fct_revenue have in dbt? It feeds the CFO dashboard.",
+      "fixture": null,
+      "must_include": [
+        "unique",
+        "relationships",
+        "contract",
+        "severity|error",
+        "unit test"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

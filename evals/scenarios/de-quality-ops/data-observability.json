@@ -1,0 +1,19 @@
+{
+  "skill": "data-observability",
+  "plugin": "de-quality-ops",
+  "scenarios": [
+    {
+      "id": "obs-1",
+      "prompt": "Users keep finding stale dashboards before we do. Set up monitoring.",
+      "fixture": null,
+      "must_include": [
+        "freshness",
+        "volume",
+        "owner",
+        "runbook",
+        "severity|P1"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

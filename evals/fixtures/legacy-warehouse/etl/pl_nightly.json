@@ -1,0 +1,8 @@
+{"name":"pl_nightly","properties":{"activities":[
+ {"name":"Copy Orders","type":"Copy","inputs":[{"referenceName":"ds_erp_orders","type":"DatasetReference"}],"outputs":[{"referenceName":"ds_lake_orders","type":"DatasetReference"}],
+  "typeProperties":{"source":{"type":"SqlServerSource","sqlReaderQuery":"SELECT * FROM dbo.Orders WHERE ModifiedAt > '2020-01-01'"},"sink":{"type":"LakehouseTableSink"}}},
+ {"name":"Load Fact","type":"SqlServerStoredProcedure","dependsOn":[{"activity":"Copy Orders","dependencyConditions":["Succeeded"]}],"linkedServiceName":{"referenceName":"ls_dw","type":"LinkedServiceReference"},
+  "typeProperties":{"storedProcedureName":"dbo.usp_LoadSales"}},
+ {"name":"If Weekend","type":"IfCondition","dependsOn":[{"activity":"Load Fact","dependencyConditions":["Succeeded"]}],"typeProperties":{"expression":{"value":"@equals(1,1)","type":"Expression"},
+  "ifTrueActivities":[{"name":"Run Dyn","type":"Script","typeProperties":{"scripts":[{"type":"Query","text":{"value":"@concat('SELECT 1')","type":"Expression"}}]}}]}}
+]}}

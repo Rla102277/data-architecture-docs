@@ -1,0 +1,20 @@
+{
+  "skill": "sql-server-source-extraction",
+  "plugin": "de-platforms",
+  "scenarios": [
+    {
+      "id": "sqlsrc-1",
+      "prompt": "Pull data from our production SQL Server ERP without slowing it down.",
+      "fixture": null,
+      "must_include": [
+        "readable secondary|replica",
+        "snapshot isolation",
+        "rowversion|change tracking|CDC",
+        "least.?privilege|SELECT"
+      ],
+      "must_not_include": [
+        "WITH \\(NOLOCK\\)"
+      ]
+    }
+  ]
+}

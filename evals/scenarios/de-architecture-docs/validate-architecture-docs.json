@@ -1,0 +1,17 @@
+{
+  "skill": "validate-architecture-docs",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "validate-docs-1",
+      "prompt": "Check our architecture docs for problems before review.",
+      "fixture": null,
+      "must_include": [
+        "validate_docs\\.py",
+        "exit|error",
+        "consisten"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

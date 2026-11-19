@@ -1,0 +1,19 @@
+{
+  "skill": "data-vault-modeling",
+  "plugin": "de-modeling",
+  "scenarios": [
+    {
+      "id": "dv-1",
+      "prompt": "Customers come from ERP and CRM with different key formats. Design the Data Vault for customers and orders.",
+      "fixture": null,
+      "must_include": [
+        "hashdiff",
+        "record_source",
+        "trim|upper",
+        "PIT",
+        "satellite.*(source|rate)"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

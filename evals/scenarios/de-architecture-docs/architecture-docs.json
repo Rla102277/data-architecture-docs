@@ -1,0 +1,18 @@
+{
+  "skill": "architecture-docs",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "docs-1",
+      "prompt": "Write the architecture docs and TDD for this data platform repo.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "single action|ground",
+        "facts",
+        "CIO|executive",
+        "\\?"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "dbt-model-development",
+  "plugin": "de-dbt",
+  "scenarios": [
+    {
+      "id": "dbt-inc-1",
+      "prompt": "Make fct_orders incremental in dbt on Fabric. The source has updated_at, rows get corrected up to 2 days later, and some orders are hard deleted.",
+      "fixture": null,
+      "must_include": [
+        "unique_key",
+        "lookback|dateadd|interval|-\\s*[23]",
+        "delet",
+        "full[-_ ]refresh",
+        "adapter|support"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

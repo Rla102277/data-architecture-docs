@@ -1,0 +1,21 @@
+{
+  "skill": "sql-object-inventory",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "inventory-1",
+      "prompt": "Inventory everything in our SQL Server warehouse database before we migrate.",
+      "fixture": null,
+      "must_include": [
+        "sys\\.objects|INFORMATION_SCHEMA",
+        "sql_expression_dependencies|dependenc",
+        "sysjobs|Agent job",
+        "restart|reset",
+        "csv"
+      ],
+      "must_not_include": [
+        "\\bEXEC\\b.*to (see|test)"
+      ]
+    }
+  ]
+}

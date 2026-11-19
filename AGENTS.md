@@ -6,25 +6,30 @@ Entry point for any coding agent working on this repo.
 
 ## What this repo is
 
-A plugin marketplace. `plugins/data-architecture-docs/` is first-party.
-`plugins/data-warrior/` and `plugins/gordonmurray-data-engineering/` are
-vendored from upstream. See README.md for the layout and docs/HOW-IT-WORKS.md
-for the flow.
+The Data Engineering Factory: a Claude Code and Cursor plugin marketplace of
+data engineering skills, plus the tooling that builds, verifies and evals them.
+First-party plugins are `plugins/de-*` (they have `plugin.meta.json`).
+`plugins/data-warrior` and `plugins/gordonmurray-data-engineering` are vendored.
+Read README.md, `factory/SKILL_STANDARD.md` and `docs/HOW-IT-WORKS.md`.
 
 ## Rules
 
+- **Every first-party skill meets `factory/SKILL_STANDARD.md`**: "Use when"
+  description; sections When to use, Inspect first, Procedure, Standards,
+  Failure modes, Verify, Output in order; doctrine link; under 500 lines; an
+  eval scenario in `evals/scenarios/<plugin>/<skill>.json`.
+- **New skills** start from `python3 scripts/new_skill.py`.
 - **Never hand-edit vendored plugins.** Change upstream, then
   `python3 scripts/sync_upstream.py <plugin>`.
-- **Never hand-edit generated files**: both `marketplace.json`, both first-party
-  `plugin.json`, and every `references/conventions.md`. Edit the source
-  (`marketplace.meta.json`, `plugin.meta.json`, `shared/conventions.md`) and run
+- **Never hand-edit generated files**: marketplace and plugin manifests,
+  `references/doctrine.md`, `references/conventions.md`, `references/skill-standard.md`,
+  the skill-factory `assets/*.tmpl`, and `catalog/`. Edit the source and run
   `python3 scripts/build.py`.
-- No symlinks anywhere. Hosts skip or mishandle them.
-- Each skill is self-contained: its own `references/` and `assets/`, links one
-  level deep, SKILL.md under 500 lines, description says when to use it.
-- Reviewer agents stay read-only (`tools: Read, Grep, Glob`) and return text.
-- No em dashes in first-party files. Plain, direct voice.
-- Keep workplace and client specifics out. Examples are fictional.
+- **Scripts** are standard-library Python unless there is no reasonable way
+  (sqlglot for lineage). Every script has a test in `tests/`.
+- No symlinks. No em dashes in first-party files. Plain, direct voice.
+- Keep workplace and client specifics out. Examples and fixtures are fictional.
+- Version-sensitive platform facts carry a date and "recheck before citing".
 - Roles (Deshi / Rōnin / Kensei) change collaboration style, never permissions.
 
 ## Before committing
@@ -33,8 +38,8 @@ for the flow.
 python3 scripts/build.py --check
 python3 scripts/verify_repo.py
 python3 -m unittest discover -s tests
-claude plugin validate .        # if the Claude Code CLI is installed
+claude plugin validate .
 ```
 
-Bump `version` in `plugin.meta.json` and add a CHANGELOG entry for any change
-to the first-party plugin.
+Bump `version` in the plugin's `plugin.meta.json` and add a CHANGELOG entry for
+any change to a first-party plugin.

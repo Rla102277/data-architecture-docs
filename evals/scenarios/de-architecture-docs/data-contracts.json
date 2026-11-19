@@ -1,0 +1,19 @@
+{
+  "skill": "data-contracts",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "contract-1",
+      "prompt": "Write the data contract for the orders feed from the ERP into our platform.",
+      "fixture": null,
+      "must_include": [
+        "delete",
+        "owner",
+        "breaking|compatib",
+        "late",
+        "timezone|time zone|UTC"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

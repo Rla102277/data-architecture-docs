@@ -1,0 +1,19 @@
+{
+  "skill": "data-quality-checks",
+  "plugin": "de-quality-ops",
+  "scenarios": [
+    {
+      "id": "dq-1",
+      "prompt": "What data quality checks should the orders pipeline have?",
+      "fixture": null,
+      "must_include": [
+        "block|severity",
+        "quarantine",
+        "owner",
+        "volume",
+        "grain|unique"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

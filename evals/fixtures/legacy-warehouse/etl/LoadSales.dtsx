@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="LoadSales" DTS:ExecutableType="Microsoft.Package">
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:ObjectName="ERP" DTS:CreationName="OLEDB">
+      <DTS:ObjectData><DTS:ConnectionManager DTS:ConnectionString="Data Source=erp01;Initial Catalog=ERP;User ID=etl;Password=NOT-A-REAL-SECRET;"/></DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable DTS:ObjectName="SqlCmd" DTS:EvaluateAsExpression="True" DTS:Expression="&quot;SELECT * FROM src.Orders WHERE d &gt; '&quot; + @[User::RunDate] + &quot;'&quot;"/>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:refId="Package\Truncate Stage" DTS:ObjectName="Truncate Stage" DTS:ExecutableType="Microsoft.ExecuteSQLTask">
+      <DTS:ObjectData><SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" SQLTask:SqlStatementSource="TRUNCATE TABLE stg.Orders"/></DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:refId="Package\DFT Orders" DTS:ObjectName="DFT Orders" DTS:ExecutableType="Microsoft.Pipeline">
+      <DTS:ObjectData><pipeline><components>
+        <component name="OLE DB Source" componentClassID="Microsoft.OLEDBSource"><properties><property name="SqlCommand">SELECT OrderID, Amount FROM src.Orders</property></properties></component>
+        <component name="OLE DB Destination" componentClassID="Microsoft.OLEDBDestination"><properties><property name="OpenRowset">[stg].[Orders]</property></properties></component>
+      </components></pipeline></DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:From="Package\Truncate Stage" DTS:To="Package\DFT Orders"/>
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

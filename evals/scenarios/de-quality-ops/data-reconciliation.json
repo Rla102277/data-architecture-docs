@@ -1,0 +1,19 @@
+{
+  "skill": "data-reconciliation",
+  "plugin": "de-quality-ops",
+  "scenarios": [
+    {
+      "id": "recon-1",
+      "prompt": "Finance wants the revenue mart tied out to the GL every month. Set that up.",
+      "fixture": null,
+      "must_include": [
+        "account",
+        "timing",
+        "tolerance",
+        "sign-?off",
+        "system of record|general ledger"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

@@ -1,30 +1,89 @@
 {
-  "name": "data-architecture-docs",
+  "name": "data-engineering-factory",
   "owner": {
     "name": "Randy Archambault"
   },
   "metadata": {
-    "description": "Data engineering architecture toolkit: persona-tiered design docs, The Data Warrior, and expert lakehouse and streaming skills.",
-    "version": "1.0.0"
+    "description": "A skill factory for data engineers: reverse engineering, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, persona-tiered architecture docs, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
+    "version": "2.0.0"
   },
   "plugins": [
     {
-      "name": "data-architecture-docs",
-      "source": "./plugins/data-architecture-docs",
-      "description": "Persona-tiered design docs for data platforms: architecture overview, TDD, ADRs, data model, pipeline specs, contracts, governance, delivery and cost, written for the CDO/CIO, the Data Director and the Lead Data Engineer from one facts file, grounded first and reviewed by read-only subagents.",
-      "version": "1.0.0"
+      "name": "de-reverse-engineering",
+      "source": "./plugins/de-reverse-engineering",
+      "description": "Reverse engineer legacy data systems without running them: SQL Server, Snowflake and Fabric catalog inventory, stored procedure specs, SSIS and ADF/Fabric pipeline analysis, sqlglot table lineage, business rules catalog, profiling, and legacy-to-dbt migration with parity testing.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-sql",
+      "source": "./plugins/de-sql",
+      "description": "SQL craft for data engineers on T-SQL, Snowflake and Spark SQL: style and review, performance tuning with plans, refactoring legacy SQL to set-based and CTE form with parity, and testing SQL.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-dbt",
+      "source": "./plugins/de-dbt",
+      "description": "Opinionated dbt for Fabric, Snowflake and SQL Server: project setup, model development and incremental strategies, tests and contracts, snapshots, and CI/CD with slim CI and environments.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-modeling",
+      "source": "./plugins/de-modeling",
+      "description": "Data modeling for analytics: Kimball dimensional modeling (grain, conformed dimensions, SCD, fact types) and Data Vault 2.0 (hubs, links, satellites, hash keys, PIT and bridge, AutomateDV).",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-pipelines",
+      "source": "./plugins/de-pipelines",
+      "description": "Pipeline engineering: incremental ingestion (CDC, change tracking, watermarks, snapshots, deletes, late data, schema drift), safe backfill and replay, and Airflow orchestration with dbt.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-platforms",
+      "source": "./plugins/de-platforms",
+      "description": "Platform-deep skills for Microsoft Fabric, Snowflake, Power BI semantic models and SQL Server as a source: topology, security, capacity and cost, deployment, and the traps each platform has.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-quality-ops",
+      "source": "./plugins/de-quality-ops",
+      "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-architecture-docs",
+      "source": "./plugins/de-architecture-docs",
+      "description": "Persona-tiered design docs for data platforms: architecture overview, TDD, ADRs, data model, pipeline specs, contracts, governance, delivery and cost, for the CDO/CIO, the Data Director and the Lead Data Engineer, from one facts file, reviewed by read-only subagents.",
+      "version": "2.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-skill-factory",
+      "source": "./plugins/de-skill-factory",
+      "description": "Make more data engineering skills to one standard: create a new skill, upgrade a thin skill into a deep one, and eval a skill against a no-skill baseline.",
+      "version": "1.0.0",
+      "category": "productivity"
     },
     {
       "name": "data-warrior",
       "source": "./plugins/data-warrior",
       "description": "The Data Warrior skills (skills only): ground the decision before the build, study trade-offs, win the room, read the void. The full Forge plugin lives upstream.",
-      "version": "0.0.0-upstream.3f55283"
+      "version": "0.0.0-upstream.3f55283",
+      "category": "productivity"
     },
     {
       "name": "gordonmurray-data-engineering",
       "source": "./plugins/gordonmurray-data-engineering",
       "description": "Deep, dated expert skills for Apache Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn and Docker Compose, by Gordon Murray.",
-      "version": "0.0.0-upstream.4d8f511"
+      "version": "0.0.0-upstream.4d8f511",
+      "category": "productivity"
     }
   ]
 }

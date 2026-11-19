@@ -1,0 +1,23 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-platforms",
+  "displayName": "DE: Platforms",
+  "version": "1.0.0",
+  "description": "Platform-deep skills for Microsoft Fabric, Snowflake, Power BI semantic models and SQL Server as a source: topology, security, capacity and cost, deployment, and the traps each platform has.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "microsoft-fabric",
+    "snowflake",
+    "power-bi",
+    "sql-server",
+    "semantic-model",
+    "lakehouse"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

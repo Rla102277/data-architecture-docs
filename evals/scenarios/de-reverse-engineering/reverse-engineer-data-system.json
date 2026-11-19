@@ -1,0 +1,21 @@
+{
+  "skill": "reverse-engineer-data-system",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "re-system-1",
+      "prompt": "I inherited this old SQL Server warehouse code and some SSIS and ADF packages in this folder. Nobody knows what it does. Figure it out before we migrate it.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "docs/reverse-engineering|system[- ]map",
+        "open question",
+        "sp_executesql|dynamic SQL",
+        "#stage|temp(orary)? table",
+        "read[- ]only|do not run|never run"
+      ],
+      "must_not_include": [
+        "\\bEXEC(UTE)?\\s+dbo\\.usp_LoadSales\\b.*to see what"
+      ]
+    }
+  ]
+}

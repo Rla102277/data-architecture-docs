@@ -19,13 +19,13 @@ source commit.
 - Source: https://github.com/vaquarkhan/data-engineering-agent-skills
 - License: MIT, Copyright (c) 2026
 - Included, modified (YAML front matter and an Output section added so they run as read-only subagents):
-  `plugins/data-architecture-docs/agents/data-architect.md`, `analytics-engineer-reviewer.md`,
+  `plugins/de-architecture-docs/agents/data-architect.md`, `analytics-engineer-reviewer.md`,
   `data-platform-reliability-reviewer.md`, `data-platform-infrastructure-reviewer.md`,
   `data-security-and-compliance-auditor.md`
 - Included unchanged:
-  `plugins/data-architecture-docs/skills/data-contracts/assets/source-contract.yaml`,
+  `plugins/de-architecture-docs/skills/data-contracts/assets/source-contract.yaml`,
   `dataset-contract.yaml`, `metric-contract.yaml`;
-  `plugins/data-architecture-docs/skills/engineer-pack/assets/plans/backfill-plan.yaml`,
+  `plugins/de-architecture-docs/skills/engineer-pack/assets/plans/backfill-plan.yaml`,
   `schema-change-plan.yaml`, `release-gate-evidence.yaml`
 
 ## MADR

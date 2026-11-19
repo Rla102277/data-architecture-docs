@@ -15,5 +15,5 @@ Open questions: Q-001 (run budget source, CFO, Jan 15).
 This example covers the executive pack only. Validate it with:
 
 ```bash
-python3 plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py examples/northwind-distribution/docs/architecture --packs executive
+python3 plugins/de-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py examples/northwind-distribution/docs/architecture --packs executive
 ```

@@ -1,0 +1,23 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-modeling",
+  "displayName": "DE: Modeling",
+  "version": "1.0.0",
+  "description": "Data modeling for analytics: Kimball dimensional modeling (grain, conformed dimensions, SCD, fact types) and Data Vault 2.0 (hubs, links, satellites, hash keys, PIT and bridge, AutomateDV).",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "data-modeling",
+    "kimball",
+    "dimensional",
+    "data-vault",
+    "scd",
+    "star-schema"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "airflow-orchestration",
+  "plugin": "de-pipelines",
+  "scenarios": [
+    {
+      "id": "airflow-1",
+      "prompt": "Write an Airflow DAG that loads orders nightly and runs dbt after.",
+      "fixture": null,
+      "must_include": [
+        "data_interval|logical date",
+        "retries",
+        "execution_timeout|timeout",
+        "catchup",
+        "cosmos|dbt build"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

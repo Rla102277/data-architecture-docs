@@ -1,0 +1,22 @@
+{
+  "name": "de-dbt",
+  "displayName": "DE: dbt",
+  "version": "1.0.0",
+  "description": "Opinionated dbt for Fabric, Snowflake and SQL Server: project setup, model development and incremental strategies, tests and contracts, snapshots, and CI/CD with slim CI and environments.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "dbt",
+    "analytics-engineering",
+    "fabric",
+    "snowflake",
+    "incremental",
+    "ci-cd"
+  ],
+  "skills": "./skills/",
+  "logo": "./assets/icon.png"
+}

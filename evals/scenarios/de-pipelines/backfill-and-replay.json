@@ -1,0 +1,19 @@
+{
+  "skill": "backfill-and-replay",
+  "plugin": "de-pipelines",
+  "scenarios": [
+    {
+      "id": "backfill-1",
+      "prompt": "We fixed a bug in the revenue logic. Reprocess the last two years.",
+      "fixture": null,
+      "must_include": [
+        "chunk|partition",
+        "validat",
+        "owner|approv",
+        "rollback|time travel|previous version",
+        "isolat|swap|pause"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

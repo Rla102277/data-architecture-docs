@@ -1,0 +1,18 @@
+{
+  "skill": "sql-testing",
+  "plugin": "de-sql",
+  "scenarios": [
+    {
+      "id": "sqltest-1",
+      "prompt": "Write tests for the revenue query so this bug never comes back.",
+      "fixture": null,
+      "must_include": [
+        "zero rows|returns? (the )?(offending|bad) rows",
+        "fixed input|fixture",
+        "edge|null|boundary",
+        "CI"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "skill": "executive-pack",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "exe-1",
+      "prompt": "Write the one-page exec brief for the CIO on funding the data platform.",
+      "fixture": null,
+      "must_include": [
+        "decision",
+        "cost",
+        "risk",
+        "if (the answer is )?no|if they say no|otherwise",
+        "approve|delay|refuse"
+      ],
+      "must_not_include": [
+        "seamless|best-in-class|robust and scalable"
+      ]
+    }
+  ]
+}

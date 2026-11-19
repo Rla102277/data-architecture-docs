@@ -1,0 +1,20 @@
+{
+  "skill": "data-profiling",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "profile-1",
+      "prompt": "Before we pick a key for dbo.Orders (80 million rows, production OLTP), profile it. Give me the SQL.",
+      "fixture": null,
+      "must_include": [
+        "duplicate",
+        "sample|replica|off-peak|secondary",
+        "APPROX_COUNT_DISTINCT|COUNT\\(DISTINCT",
+        "null"
+      ],
+      "must_not_include": [
+        "NOLOCK"
+      ]
+    }
+  ]
+}

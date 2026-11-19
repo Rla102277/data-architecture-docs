@@ -1,0 +1,40 @@
+# Slim CI for dbt on pull requests. Adjust adapter, secrets and artifact location.
+name: dbt-ci
+
+on:
+  pull_request:
+    paths: ["models/**", "macros/**", "tests/**", "seeds/**", "snapshots/**", "dbt_project.yml", "packages.yml"]
+
+concurrency:
+  group: dbt-ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: ./ci
+      DBT_CI_SCHEMA: dbt_ci_pr_${{ github.event.pull_request.number }}
+      # adapter credentials come from repository secrets, never from files
+      DBT_HOST: ${{ secrets.DBT_HOST }}
+      DBT_CLIENT_ID: ${{ secrets.DBT_CLIENT_ID }}
+      DBT_CLIENT_SECRET: ${{ secrets.DBT_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Fetch production manifest
+        run: |
+          mkdir -p prod-artifacts
+          # replace with your artifact store (az storage blob download, aws s3 cp, ...)
+          ./ci/fetch_prod_manifest.sh prod-artifacts/manifest.json
+      - run: dbt deps
+      - name: Lint changed SQL
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }} -- 'models/**/*.sql' || true)
+          if [ -n "$CHANGED" ]; then sqlfluff lint $CHANGED; fi
+      - name: Build changed models and children
+        run: dbt build --target ci --select state:modified+ --defer --state prod-artifacts

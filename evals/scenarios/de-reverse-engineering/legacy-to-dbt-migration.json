@@ -1,0 +1,19 @@
+{
+  "skill": "legacy-to-dbt-migration",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "migrate-1",
+      "prompt": "Convert usp_LoadSales into dbt models.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "parity",
+        "mapping",
+        "rule",
+        "parallel run|run in parallel",
+        "#stage|temp table.*(intermediate|ephemeral)|intermediate"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

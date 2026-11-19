@@ -1,0 +1,19 @@
+{
+  "skill": "sql-style-and-review",
+  "plugin": "de-sql",
+  "scenarios": [
+    {
+      "id": "review-1",
+      "prompt": "Review revenue_by_customer.sql before I merge it.",
+      "fixture": "evals/fixtures/bad-sql",
+      "must_include": [
+        "NOT EXISTS",
+        "BETWEEN|half-open|< '2026-11-01'",
+        "NOLOCK",
+        "fan-?out|double count|Payments",
+        "WHERE.*(turns|becomes|makes).*inner|inner join"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

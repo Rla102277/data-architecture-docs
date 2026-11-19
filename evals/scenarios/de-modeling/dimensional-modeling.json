@@ -1,0 +1,19 @@
+{
+  "skill": "dimensional-modeling",
+  "plugin": "de-modeling",
+  "scenarios": [
+    {
+      "id": "dim-1",
+      "prompt": "Design the star schema for order lines and shipments for our Power BI reports.",
+      "fixture": null,
+      "must_include": [
+        "grain",
+        "conformed",
+        "unknown member|-1|unknown row",
+        "additive",
+        "bus matrix"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

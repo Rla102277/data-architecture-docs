@@ -1,0 +1,20 @@
+{
+  "skill": "sql-performance-tuning",
+  "plugin": "de-sql",
+  "scenarios": [
+    {
+      "id": "tuning-1",
+      "prompt": "This T-SQL query takes 20 minutes. Make it faster.",
+      "fixture": null,
+      "must_include": [
+        "execution plan|STATISTICS IO",
+        "checksum|same result|identical",
+        "one (change|thing) at a time",
+        "baseline"
+      ],
+      "must_not_include": [
+        "NOLOCK"
+      ]
+    }
+  ]
+}

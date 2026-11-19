@@ -7,7 +7,7 @@
 The example covers the executive pack only, and passes the linter:
 
 ```bash
-python3 plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py \
+python3 plugins/de-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py \
   examples/northwind-distribution/docs/architecture --packs executive
 ```
 

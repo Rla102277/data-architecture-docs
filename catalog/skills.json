@@ -1,0 +1,569 @@
+[
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "business-rule-extraction",
+    "first_party": true,
+    "description": "Use when you need the business logic hidden inside existing SQL, stored procedures, views, ETL transforms, dbt models or report measures written down as rules a business person can confirm: filters, CASE logic, hard-coded IDs and dates, exclusions, allocations, currency and unit conversions, deduplication and late-data rules. Produces a rules catalog with evidence, confidence and an owner to confirm each rule.",
+    "path": "plugins/de-reverse-engineering/skills/business-rule-extraction"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "data-profiling",
+    "first_party": true,
+    "description": "Use when you need to know what is actually in a table before trusting, modeling or migrating it: row counts, nulls, distinct values, ranges, lengths, top values, candidate keys and duplicate checks, and hints of PII. Generates read-only profiling SQL for SQL Server, Fabric Warehouse, Snowflake and Spark lakehouse tables, with sampling for big tables.",
+    "path": "plugins/de-reverse-engineering/skills/data-profiling"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "etl-package-analysis",
+    "first_party": true,
+    "description": "Use when you must understand existing ETL packages or pipelines without running them: SSIS .dtsx packages, Azure Data Factory, Synapse or Microsoft Fabric Data Factory pipeline JSON. Extracts connections, steps, dependencies, data flow sources and destinations, every SQL statement and stored procedure call, and flags SQL built at run time, writing one summary per package.",
+    "path": "plugins/de-reverse-engineering/skills/etl-package-analysis"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "legacy-to-dbt-migration",
+    "first_party": true,
+    "description": "Use when moving legacy SQL logic (stored procedures, views, SSIS or ADF transforms, SQL Agent jobs) into dbt on Fabric, Snowflake, SQL Server or a lakehouse. Plans the cut by subject area, maps each proc step to dbt models, carries business rules over explicitly, and proves parity with row and value comparisons before switching consumers.",
+    "path": "plugins/de-reverse-engineering/skills/legacy-to-dbt-migration"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "lineage-extraction",
+    "first_party": true,
+    "description": "Use when you need to know what feeds what: table-level lineage from SQL files, stored procedures, views, dbt models or SQL pulled out of SSIS and ADF/Fabric pipelines, including procedure-to-procedure EXEC calls and temp tables. Runs a sqlglot-based extractor (T-SQL, Snowflake, Spark and more) and writes edges.csv, a Mermaid lineage diagram and a list of everything it could not parse.",
+    "path": "plugins/de-reverse-engineering/skills/lineage-extraction"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "reverse-engineer-data-system",
+    "first_party": true,
+    "description": "Use when you inherit or must replace a data system nobody fully understands: a legacy SQL Server warehouse, stored procedures, SSIS packages, ADF or Fabric pipelines, a Snowflake account, an undocumented dbt project. Runs the full reverse-engineering pass (inventory, code, ETL, lineage, rules, profiling) and produces a system map, lineage, a business rules catalog and open questions in docs/reverse-engineering/.",
+    "path": "plugins/de-reverse-engineering/skills/reverse-engineer-data-system"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "sql-object-inventory",
+    "first_party": true,
+    "description": "Use when you need a complete catalog of a database before changing, migrating or documenting it: tables, views, stored procedures, functions, triggers, synonyms, columns, keys, row counts, dependencies, SQL Agent jobs, schedules, CDC and change tracking, linked servers, and usage signals. Read-only catalog queries for SQL Server, Azure SQL, Snowflake and Microsoft Fabric Warehouse, with results saved as CSV evidence.",
+    "path": "plugins/de-reverse-engineering/skills/sql-object-inventory"
+  },
+  {
+    "plugin": "de-reverse-engineering",
+    "skill": "stored-procedure-analysis",
+    "first_party": true,
+    "description": "Use when you must understand, document or rewrite a stored procedure: T-SQL (SQL Server, Azure SQL, Fabric Warehouse) or Snowflake procedures. Produces a spec per procedure: purpose, parameters, inputs, outputs, side effects, control flow, temp tables, business rules, error handling, transaction behavior, dynamic SQL and risks, with line references.",
+    "path": "plugins/de-reverse-engineering/skills/stored-procedure-analysis"
+  },
+  {
+    "plugin": "de-sql",
+    "skill": "sql-performance-tuning",
+    "first_party": true,
+    "description": "Use when a query, view, procedure, dbt model or report is slow or expensive on SQL Server, Azure SQL, Fabric Warehouse, Snowflake or Spark. Measures first (execution plans, STATISTICS IO/TIME, Query Store, Snowflake Query Profile, Fabric Query Insights, Spark UI), finds the real bottleneck, applies the smallest fix and proves the before/after with the same result.",
+    "path": "plugins/de-sql/skills/sql-performance-tuning"
+  },
+  {
+    "plugin": "de-sql",
+    "skill": "sql-refactoring",
+    "first_party": true,
+    "description": "Use when legacy or messy SQL must be made readable, set-based and maintainable without changing its results: nested subqueries, cursors and WHILE loops, scalar UDFs, copy-pasted logic, temp table chains, giant procedures. Refactors in small steps into CTEs, window functions and set-based logic, proving identical output with parity queries after each step.",
+    "path": "plugins/de-sql/skills/sql-refactoring"
+  },
+  {
+    "plugin": "de-sql",
+    "skill": "sql-style-and-review",
+    "first_party": true,
+    "description": "Use when writing new analytical SQL or reviewing a SQL change, query, view, stored procedure or dbt model before it merges: T-SQL, Snowflake or Spark SQL. Applies a house style (CTEs, explicit columns, naming, null-safe logic) and a correctness-first review checklist covering grain, joins, fan-out, nulls, dates, time zones, determinism and security.",
+    "path": "plugins/de-sql/skills/sql-style-and-review"
+  },
+  {
+    "plugin": "de-sql",
+    "skill": "sql-testing",
+    "first_party": true,
+    "description": "Use when SQL logic needs proof: unit-style tests on fixed inputs, assertion queries that must return zero rows, parity checks between an old and new query or table, golden datasets, and regression checks for views, stored procedures and dbt models on SQL Server, Fabric, Snowflake or Spark.",
+    "path": "plugins/de-sql/skills/sql-testing"
+  },
+  {
+    "plugin": "de-dbt",
+    "skill": "dbt-ci-and-deployment",
+    "first_party": true,
+    "description": "Use when setting up or fixing how dbt changes are tested and shipped: slim CI with state:modified+ and --defer against production artifacts, per-PR schemas, production runs from Airflow, Fabric pipelines, GitHub Actions, Azure DevOps or dbt Cloud, artifact storage, blue/green or staged deploys, and rollback.",
+    "path": "plugins/de-dbt/skills/dbt-ci-and-deployment"
+  },
+  {
+    "plugin": "de-dbt",
+    "skill": "dbt-model-development",
+    "first_party": true,
+    "description": "Use when writing or changing dbt models: staging, intermediate and mart models, choosing materializations, building incremental models (merge, delete+insert, append, insert_overwrite, microbatch) with correct unique_key, lookback for late data and on_schema_change, snapshots for SCD Type 2, ref and source usage, macros, and documentation.",
+    "path": "plugins/de-dbt/skills/dbt-model-development"
+  },
+  {
+    "plugin": "de-dbt",
+    "skill": "dbt-project-setup",
+    "first_party": true,
+    "description": "Use when starting a dbt project or straightening out a messy one: adapter choice (dbt-fabric, dbt-fabricspark, dbt-snowflake, dbt-sqlserver, dbt-databricks), folder layout mapped to platform layers (staging, intermediate, marts or raw vault, business vault, marts), profiles and environments, packages, naming, sources and freshness, sqlfluff, and the first CI run.",
+    "path": "plugins/de-dbt/skills/dbt-project-setup"
+  },
+  {
+    "plugin": "de-dbt",
+    "skill": "dbt-testing-and-contracts",
+    "first_party": true,
+    "description": "Use when adding or reviewing tests in a dbt project: generic tests (unique, not_null, relationships, accepted_values), dbt-utils and dbt-expectations tests, singular tests, unit tests on fixed inputs (dbt 1.8+), model contracts with enforced data types and constraints, severity and warn/error thresholds, store_failures, and source freshness.",
+    "path": "plugins/de-dbt/skills/dbt-testing-and-contracts"
+  },
+  {
+    "plugin": "de-modeling",
+    "skill": "data-vault-modeling",
+    "first_party": true,
+    "description": "Use when designing, building or reviewing a Data Vault 2.0 layer: hubs, links, satellites, hash keys and hashdiffs, multi-source and multi-active satellites, effectivity satellites, PIT and bridge tables, the business vault, and information marts on top, built with dbt packages such as AutomateDV or datavault4dbt on Fabric, Snowflake or SQL Server.",
+    "path": "plugins/de-modeling/skills/data-vault-modeling"
+  },
+  {
+    "plugin": "de-modeling",
+    "skill": "dimensional-modeling",
+    "first_party": true,
+    "description": "Use when designing or reviewing analytics tables for reporting and BI: Kimball star schemas, choosing the grain, fact types (transaction, periodic snapshot, accumulating snapshot, factless), conformed dimensions, slowly changing dimensions (Type 1, 2, 3, mini-dimensions), surrogate keys, date dimensions, role-playing and junk dimensions, and bus matrices for Power BI and other tools.",
+    "path": "plugins/de-modeling/skills/dimensional-modeling"
+  },
+  {
+    "plugin": "de-pipelines",
+    "skill": "airflow-orchestration",
+    "first_party": true,
+    "description": "Use when building or reviewing Apache Airflow DAGs for data pipelines, including Astronomer, MWAA, Cloud Composer and Fabric's Apache Airflow job: DAG design, idempotent tasks keyed on the data interval, retries and timeouts, backfills and catchup, sensors and dataset (asset) scheduling, secrets, alerting, and running dbt from Airflow with Cosmos or bash.",
+    "path": "plugins/de-pipelines/skills/airflow-orchestration"
+  },
+  {
+    "plugin": "de-pipelines",
+    "skill": "backfill-and-replay",
+    "first_party": true,
+    "description": "Use when historical data must be loaded, reloaded or reprocessed: initial history loads, rebuilding after a logic fix, replaying from raw after a bad run, or recovering a missed window. Plans scope, ordering, isolation, cost and validation, runs in chunks with checkpoints, and protects production consumers while it runs.",
+    "path": "plugins/de-pipelines/skills/backfill-and-replay"
+  },
+  {
+    "plugin": "de-pipelines",
+    "skill": "incremental-ingestion",
+    "first_party": true,
+    "description": "Use when designing or fixing how data is pulled from a source into the platform: choosing CDC, SQL Server change tracking, timestamp watermarks, full snapshots, file drops or API pagination; making loads idempotent; handling deletes, late and corrected rows, schema drift, retries and partial failures; and recording watermarks safely.",
+    "path": "plugins/de-pipelines/skills/incremental-ingestion"
+  },
+  {
+    "plugin": "de-platforms",
+    "skill": "microsoft-fabric-engineering",
+    "first_party": true,
+    "description": "Use when building, reviewing or troubleshooting a Microsoft Fabric data platform: workspace and capacity topology (F SKUs), Lakehouse vs Warehouse per layer, OneLake shortcuts and mirroring, Data Factory pipelines, Dataflow Gen2, Copy job and notebooks, dbt-fabric, Git integration and deployment (deployment pipelines, fabric-cicd), security (workspace roles, OneLake data access, RLS), capacity throttling and cost, and table maintenance.",
+    "path": "plugins/de-platforms/skills/microsoft-fabric-engineering"
+  },
+  {
+    "plugin": "de-platforms",
+    "skill": "power-bi-semantic-models",
+    "first_party": true,
+    "description": "Use when designing, reviewing or deploying Power BI semantic models (datasets) on Fabric or Power BI: star schema shape, storage mode (Direct Lake, Import, DirectQuery, composite), DAX measure standards, calculation groups, RLS and OLS with Entra groups, incremental refresh, PBIP and TMDL in Git, deployment pipelines, performance with DAX query view and Best Practice Analyzer, and working from a Mac.",
+    "path": "plugins/de-platforms/skills/power-bi-semantic-models"
+  },
+  {
+    "plugin": "de-platforms",
+    "skill": "snowflake-engineering",
+    "first_party": true,
+    "description": "Use when building, reviewing or cost-tuning a Snowflake platform: database and schema layout per environment, role hierarchy (functional and access roles), warehouses per workload with auto-suspend and resource monitors, Snowpipe, streams and tasks, dynamic tables, dbt-snowflake, zero-copy clones, time travel, masking and row access policies, service user authentication, query tagging and cost attribution.",
+    "path": "plugins/de-platforms/skills/snowflake-engineering"
+  },
+  {
+    "plugin": "de-platforms",
+    "skill": "sql-server-source-extraction",
+    "first_party": true,
+    "description": "Use when extracting data from an operational SQL Server or Azure SQL database into a warehouse or lakehouse (Fabric, Snowflake, Databricks) without hurting the application: readable secondaries, snapshot isolation, rowversion and datetime watermarks, change tracking, CDC setup and retention, Fabric mirroring, on-premises data gateways, least-privilege logins and safe query patterns.",
+    "path": "plugins/de-platforms/skills/sql-server-source-extraction"
+  },
+  {
+    "plugin": "de-quality-ops",
+    "skill": "data-observability",
+    "first_party": true,
+    "description": "Use when you need to know a pipeline or data product is broken before users do: freshness, volume, schema change and distribution monitors, pipeline run and duration monitoring, alert routing and severity, SLA tracking, lineage for impact, and dashboards, using what the platform already has (dbt artifacts, Fabric monitoring hub, Snowflake ACCOUNT_USAGE, Airflow) before buying a tool.",
+    "path": "plugins/de-quality-ops/skills/data-observability"
+  },
+  {
+    "plugin": "de-quality-ops",
+    "skill": "data-quality-checks",
+    "first_party": true,
+    "description": "Use when deciding what data quality checks a pipeline or data product needs and wiring them in: completeness, uniqueness, validity, referential integrity, freshness and volume checks, severity (block vs warn), where each check runs (landing, staging, marts), quarantine of bad rows, ownership, and tooling (dbt tests, Great Expectations, Soda, platform constraints).",
+    "path": "plugins/de-quality-ops/skills/data-quality-checks"
+  },
+  {
+    "plugin": "de-quality-ops",
+    "skill": "data-reconciliation",
+    "first_party": true,
+    "description": "Use when warehouse or lakehouse numbers must tie to a system of record: source-to-target row and amount reconciliation, GL tie-outs for revenue, COGS and margin, tolerance rules, timing differences, reconciliation evidence for SOX and audit, and automated reconciliation reports that run with every load.",
+    "path": "plugins/de-quality-ops/skills/data-reconciliation"
+  },
+  {
+    "plugin": "de-quality-ops",
+    "skill": "pipeline-incident-response",
+    "first_party": true,
+    "description": "Use when a data pipeline or data product is broken now: failed or silently wrong loads, stale dashboards, duplicate or missing data, a bad deploy, a source outage. Triage severity, stop the spread, communicate to consumers, find the root cause with evidence, fix and backfill safely, and write a blameless postmortem with the check that would have caught it.",
+    "path": "plugins/de-quality-ops/skills/pipeline-incident-response"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "architecture-decision",
+    "first_party": true,
+    "description": "Use when a data platform choice must be made or recorded: platform, table format, layering (medallion, Data Vault), modeling, ingestion (CDC vs watermark), transform tool, orchestration, environments, access model, BI mode. Writes an ADR with options, the status quo, a steelman of the rejected option and a falsifiable validation test.",
+    "path": "plugins/de-architecture-docs/skills/architecture-decision"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "architecture-docs",
+    "first_party": true,
+    "description": "Use when the user asks for architecture docs, a TDD, design docs, a solution architecture, an exec brief or roadmap for a data platform, or says \"document this data project\". Orchestrates the full persona-tiered doc set (CDO/CIO, Data Director, Lead Data Engineer) from one facts file: ground gate, ADRs, three packs, validation and independent review.",
+    "path": "plugins/de-architecture-docs/skills/architecture-docs"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "data-contracts",
+    "first_party": true,
+    "description": "Use when defining or changing data contracts at a pipeline or product boundary: source contracts (what we extract), dataset contracts (what we publish) and metric contracts (how a KPI is defined). Covers semantics, keys, deletes, late data, quality rules, freshness SLA, ownership and compatibility, written as YAML in docs/architecture/engineer/ENG-04-data-contracts/.",
+    "path": "plugins/de-architecture-docs/skills/data-contracts"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "director-pack",
+    "first_party": true,
+    "description": "Use when writing or revising the Data Director documents for a data platform: solution architecture, operating model and RACI, data governance and security, data quality and SLA framework, delivery plan, and cost model and FinOps (DIR-01..06). Logical design, ownership and trade-offs, tables over prose.",
+    "path": "plugins/de-architecture-docs/skills/director-pack"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "engineer-pack",
+    "first_party": true,
+    "description": "Use when writing or revising the Lead Data Engineer documents for a data platform: Technical Design Document (TDD), physical data model, pipeline specifications, test strategy, environments and CI/CD, security implementation, observability and runbook, and engineering standards (ENG-01..09). Build-ready detail: grain, keys, idempotency, failure modes.",
+    "path": "plugins/de-architecture-docs/skills/engineer-pack"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "executive-pack",
+    "first_party": true,
+    "description": "Use when writing or revising the CDO/CIO executive documents for a data platform: the executive brief, strategic architecture overview, investment and roadmap, and risk and governance summary (EXE-01..04). Decision-first, 2-page brief in the win-the-room shape, every number from the facts file.",
+    "path": "plugins/de-architecture-docs/skills/executive-pack"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "project-facts",
+    "first_party": true,
+    "description": "Use when starting, grounding or refreshing a data architecture doc set, or when a fact (cost, date, SLA, source, owner, decision) changes. Runs the Data Warrior ground gate, surveys the repo, interviews for gaps and builds or updates docs/architecture/00-project-facts.yaml, the single source of truth.",
+    "path": "plugins/de-architecture-docs/skills/project-facts"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "review-architecture-docs",
+    "first_party": true,
+    "description": "Use when a data architecture doc set (or one pack) is drafted and needs review before it is shared: CIO, Data Director and Lead Data Engineer reader reviews, specialist reviews (architecture, analytics engineering, reliability, infrastructure, security) and the Data Warrior Council lenses. Writes verdict files to docs/architecture/reviews/.",
+    "path": "plugins/de-architecture-docs/skills/review-architecture-docs"
+  },
+  {
+    "plugin": "de-architecture-docs",
+    "skill": "validate-architecture-docs",
+    "first_party": true,
+    "description": "Use when a data architecture doc set has been written or changed and must be checked before review or hand-off: runs the docs linter (missing docs, empty ground gate, front matter, placeholders, undefined IDs, untagged assumptions, Mermaid fences, exec word ceilings, review verdicts) and walks the persona consistency, decision and wind-pattern gates.",
+    "path": "plugins/de-architecture-docs/skills/validate-architecture-docs"
+  },
+  {
+    "plugin": "de-skill-factory",
+    "skill": "create-data-skill",
+    "first_party": true,
+    "description": "Use when someone wants a new agent skill for a data engineering task: \"make a skill for X\", \"turn how we do Y into a skill\", \"we keep explaining Z to the agent\". Interviews for the real procedure and failure modes, writes a SKILL.md to the factory standard with references, assets or scripts, adds an eval scenario, and validates it, in the factory repo or in any project.",
+    "path": "plugins/de-skill-factory/skills/create-data-skill"
+  },
+  {
+    "plugin": "de-skill-factory",
+    "skill": "eval-data-skill",
+    "first_party": true,
+    "description": "Use when you need to prove a skill or plugin changes agent behavior: run scenario prompts with and without the plugin, grade transcripts against must-include and must-not-include behaviors, compare to a baseline, and report which skills earn their place. Uses the factory's run_evals.py with the Claude Code CLI in headless mode.",
+    "path": "plugins/de-skill-factory/skills/eval-data-skill"
+  },
+  {
+    "plugin": "de-skill-factory",
+    "skill": "upgrade-data-skill",
+    "first_party": true,
+    "description": "Use when an existing skill is too thin, too generic or not triggering: \"this skill doesn't do anything\", \"deepen the Data Warrior skills\", \"make this skill follow the standard\". Audits the skill against the factory standard, rewrites it with real procedure, defaults, failure modes and verification, and proves the upgrade with a before/after eval.",
+    "path": "plugins/de-skill-factory/skills/upgrade-data-skill"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "win-the-room",
+    "first_party": false,
+    "description": "Use when the deliverable is a recommendation that a decision-maker must accept, refuse, or defer.",
+    "path": "plugins/data-warrior/skills/fire/win-the-room"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "chart-the-path",
+    "first_party": false,
+    "description": "Use when converting a defined engineering objective into an implementation plan with dependencies, tests, rollback and milestones.",
+    "path": "plugins/data-warrior/skills/forge/chart-the-path"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "draw-the-blade",
+    "first_party": false,
+    "description": "Use when implementing a scoped code, SQL, notebook, infrastructure or pipeline change and verifying it.",
+    "path": "plugins/data-warrior/skills/forge/draw-the-blade"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "lessons-of-battle",
+    "first_party": false,
+    "description": "Use after a completed change, outage, incident or engineering experiment to capture reusable lessons and prevent recurrence.",
+    "path": "plugins/data-warrior/skills/forge/lessons-of-battle"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "review-the-work",
+    "first_party": false,
+    "description": "Use when a forge build needs independent security, naming, and data-quality review files before human approval.",
+    "path": "plugins/data-warrior/skills/forge/review-the-work"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "sharpen-the-blade",
+    "first_party": false,
+    "description": "Use when refactoring or tuning a slow, expensive, fragile or hard-to-maintain data pipeline with measured before/after results.",
+    "path": "plugins/data-warrior/skills/forge/sharpen-the-blade"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "test-the-steel",
+    "first_party": false,
+    "description": "Use when validating a code or data pipeline change, investigating failed tests, or proving correctness under replay, deletes and schema drift.",
+    "path": "plugins/data-warrior/skills/forge/test-the-steel"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-contract",
+    "first_party": false,
+    "description": "Use when defining or changing producer-consumer schemas, data quality guarantees, ownership, compatibility and data contract tests.",
+    "path": "plugins/data-warrior/skills/forge/the-contract"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-forge",
+    "first_party": false,
+    "description": "Use when a grounded action has a forge spec and steps, and the user wants the line to build, prove, review, and stop for human approval.",
+    "path": "plugins/data-warrior/skills/forge/the-forge"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-pipeline",
+    "first_party": false,
+    "description": "Use when building or changing ingestion, batch/stream processing, CDC, incremental loads, Delta MERGE, SCD history or lakehouse pipelines.",
+    "path": "plugins/data-warrior/skills/forge/the-pipeline"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "to-plan",
+    "first_party": false,
+    "description": "Use when the ground gate is on the Scroll and the fight needs a rich campaign plan with phases, gates, flowchart, and mind map before a forge spec.",
+    "path": "plugins/data-warrior/skills/forge/to-plan"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "to-spec",
+    "first_party": false,
+    "description": "Use when one agreed action exists on the Scroll and must become a forge job specification with proof criteria.",
+    "path": "plugins/data-warrior/skills/forge/to-spec"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "to-steps",
+    "first_party": false,
+    "description": "Use when a forge spec exists and must be broken into ordered steps each small enough to build and fail a test.",
+    "path": "plugins/data-warrior/skills/forge/to-steps"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "grounding",
+    "first_party": false,
+    "description": "Use when interviewing for the real decision, stated-versus-real problem, grain, source of truth, and cost of being wrong before any build.",
+    "path": "plugins/data-warrior/skills/ground/grounding"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "know-the-ground",
+    "first_party": false,
+    "description": "Use when a data engineer or analyst is starting a project or task and the real decision, grain, and single action are not yet written.",
+    "path": "plugins/data-warrior/skills/ground/know-the-ground"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "simplicity",
+    "first_party": false,
+    "description": "Use when analysis or a pipeline design has grown past the single action the decision-maker can take right now.",
+    "path": "plugins/data-warrior/skills/ground/simplicity"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "survey-the-ground",
+    "first_party": false,
+    "description": "Use when entering an unfamiliar repository, diagnosing a data platform, or assessing schemas, pipelines and existing architecture before editing.",
+    "path": "plugins/data-warrior/skills/ground/survey-the-ground"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "tool-choice",
+    "first_party": false,
+    "description": "Use when choosing between tools, platforms, or ingestion approaches for a data task and ego or resume pressure may dominate fitness.",
+    "path": "plugins/data-warrior/skills/ground/tool-choice"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-battle-map",
+    "first_party": false,
+    "description": "Use when work spans multiple stages, contributors or sessions and needs an evidence-backed progress map and restart point.",
+    "path": "plugins/data-warrior/skills/practice/the-battle-map"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-challenge",
+    "first_party": false,
+    "description": "Use when a user asks to pressure-test an idea, challenge assumptions, debate a design, or uncover hidden risks before implementation.",
+    "path": "plugins/data-warrior/skills/practice/the-challenge"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-scroll",
+    "first_party": false,
+    "description": "Use when shaping an evolving engineering specification through challenging questions while preserving decisions, assumptions and contradictions across sessions.",
+    "path": "plugins/data-warrior/skills/practice/the-scroll"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "see-the-void",
+    "first_party": false,
+    "description": "Use when incentives, power, culture, or a permanently broken source may decide whether the data work can succeed.",
+    "path": "plugins/data-warrior/skills/void/see-the-void"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "void-sight",
+    "first_party": false,
+    "description": "Use when reading incentives, power, and culture that decide whether a data answer can be acted on.",
+    "path": "plugins/data-warrior/skills/void/void-sight"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "adapt",
+    "first_party": false,
+    "description": "Use when requirements, terrain, or proof changed mid-task and remaining forge steps must be rewritten or the eighty-percent answer shipped.",
+    "path": "plugins/data-warrior/skills/water/adapt"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "ship-the-eighty",
+    "first_party": false,
+    "description": "Use when further analysis or pipeline polish will not change the recommendation and the reversible action is clear enough to ship.",
+    "path": "plugins/data-warrior/skills/water/ship-the-eighty"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "the-pivot",
+    "first_party": false,
+    "description": "Use when mid-task evidence shows the current approach cannot answer the decision and a controlled change of method is required.",
+    "path": "plugins/data-warrior/skills/water/the-pivot"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "ask-the-warrior",
+    "first_party": false,
+    "description": "Use when the user is unsure which Data Warrior command or forge stage fits the work in front of them.",
+    "path": "plugins/data-warrior/skills/way/ask-the-warrior"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "setup-the-forge",
+    "first_party": false,
+    "description": "Use when starting a project or setting up once — welcome, level menu, guiding principles, then menu-driven paths for code host and jobs.",
+    "path": "plugins/data-warrior/skills/way/setup-the-forge"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "name-the-wind",
+    "first_party": false,
+    "description": "Use when a data project is drifting into known failure patterns such as tool obsession, complexity as credibility, or the permanent draft.",
+    "path": "plugins/data-warrior/skills/wind/name-the-wind"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "study-the-wind",
+    "first_party": false,
+    "description": "Use when choosing between engineering architectures, ingestion strategies, storage formats, orchestration approaches or tradeoffs.",
+    "path": "plugins/data-warrior/skills/wind/study-the-wind"
+  },
+  {
+    "plugin": "data-warrior",
+    "skill": "wind-patterns",
+    "first_party": false,
+    "description": "Use when diagnosing which failure pattern is active in a data initiative so the forge line can stop or redirect.",
+    "path": "plugins/data-warrior/skills/wind/wind-patterns"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "docker-compose",
+    "first_party": false,
+    "description": "Write, review, and modernize Docker Compose files against the current Compose Specification and the docker compose CLI. Use for authoring compose.yaml or docker-compose.yml, service dependency and healthcheck ordering, profiles, networks, volumes, secrets and configs, build contexts, migrating off V1 and the obsolete version key, or containers that fail to start, restart-loop, report unhealthy, or lose data between runs.",
+    "path": "plugins/gordonmurray-data-engineering/skills/docker-compose"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "firn",
+    "first_party": false,
+    "description": "Design, deploy, use, and troubleshoot Firn, the object-storage-backed multi-tenant vector and full-text search engine. Use for Firn REST API or embedded Python work, LanceDB-backed vector, BM25, hybrid, or multivector search, S3/GCS/MinIO storage, RAM/NVMe/object-storage caching, ingestion and index-build workflows, namespace isolation, auth, metrics, latency, or cache correctness.",
+    "path": "plugins/gordonmurray-data-engineering/skills/firn"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "flink",
+    "first_party": false,
+    "description": "Architect, implement, deploy, upgrade, and troubleshoot Apache Flink stream processing jobs. Use for Flink SQL, Table API, or DataStream implementation, 1.x to 2.x migration, savepoint and state compatibility, checkpoint failures, backpressure, watermark and late-data problems, Kubernetes Operator deployment, Flink CDC pipelines, or Iceberg, Paimon, and Fluss connector work.",
+    "path": "plugins/gordonmurray-data-engineering/skills/flink"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "flink-agents",
+    "first_party": false,
+    "description": "Design, integrate, upgrade, and troubleshoot Apache Flink Agents applications in streaming pipelines. Use for Flink Agents Actions, Events, Resources, ReAct agents, Java/Python/YAML definitions, runtime Skills and MCP, durable calls, Kafka or Fluss Action State Stores, agent memory, or 0.3 to 0.4 migrations. Not for ordinary Flink SQL jobs or general coding-agent skill authoring.",
+    "path": "plugins/gordonmurray-data-engineering/skills/flink-agents"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "fluss",
+    "first_party": false,
+    "description": "Design, deploy, and operate Apache Fluss streaming storage. Use for Fluss log or primary-key tables, retention and bucket sizing, tiering to Paimon, Iceberg, or Hudi, Flink integration and Delta Join, $changelog and $binlog virtual tables, Spark access, REST Gateway, native client SDKs, or hot storage for real-time analytics and AI context.",
+    "path": "plugins/gordonmurray-data-engineering/skills/fluss"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "iceberg",
+    "first_party": false,
+    "description": "Design, migrate, tune, and maintain Apache Iceberg tables across query engines. Use for Iceberg schema and partition evolution, v2 to v3 upgrades, catalog selection, time travel and rollback, row-level deletes, snapshot expiry, orphan file cleanup, small-file compaction, or slow queries and metadata bloat on a lakehouse table. Covers Spark, Flink, Trino, Athena, Snowflake, REST catalogs, Polaris, Nessie, Glue, and Hive.",
+    "path": "plugins/gordonmurray-data-engineering/skills/iceberg"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "iggy",
+    "first_party": false,
+    "description": "Deploy, configure, and build clients against Apache Iggy, a Rust-native message streaming platform. Use for Iggy Docker, Compose, or Kubernetes deployments, stream and topic design, retention and consumer groups, QUIC, TCP, HTTP, or WebSocket transport, apache-iggy Python clients, MCP and connectors, 0.8 to 0.9 migration, or container connectivity and persistence problems.",
+    "path": "plugins/gordonmurray-data-engineering/skills/iggy"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "lance",
+    "first_party": false,
+    "description": "Design, index, query, and tune Lance datasets and LanceDB tables for ML and AI workloads. Use for vector index selection such as IVF_PQ or IVF_HNSW_FLAT, ANN recall and latency tuning, full-text and hybrid search, scalar indexes and prefiltering, dataset versioning and compaction, embedding and multimodal storage, slow vector search on object storage, or migrating ML data from Parquet. Covers both the pylance format and the lancedb API.",
+    "path": "plugins/gordonmurray-data-engineering/skills/lance"
+  },
+  {
+    "plugin": "gordonmurray-data-engineering",
+    "skill": "paimon",
+    "first_party": false,
+    "description": "Design, ingest into, tune, and operate Apache Paimon tables for streaming lakehouses and multimodal data. Use for Paimon primary-key or append-only table design, bucket sizing, changelog producer choice, Flink CDC ingestion, compaction backlog, lookup joins, PyPaimon, blob and vector storage, Spark reads, or Iceberg compatibility.",
+    "path": "plugins/gordonmurray-data-engineering/skills/paimon"
+  }
+]

@@ -1,108 +1,133 @@
-# Data Architecture Docs
+# Data Engineering Factory
 
 **Technical completion is not strategic success.**
 
-A plugin marketplace for data engineering architecture work in Claude Code and
-Cursor. The core plugin turns a data project into a full design doc set,
-written three ways from one facts file, so the CIO brief and the engineer's TDD
-never disagree on a number:
+A skill factory for data engineers, for Claude Code and Cursor. It ships deep,
+opinionated skills for the work data engineers actually do (reverse engineering
+legacy systems, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI,
+quality and ops, architecture docs) and the machinery to make more of them to
+one standard and prove they work. The Data Warrior is the doctrine every skill follows.
 
-| Reader | Gets | Reads it to |
-|---|---|---|
-| **CDO / CIO** | 4 short docs, a 2-page brief first | Fund it, sequence it, accept the risk, or stop |
-| **Data Director** | 6 docs, tables over prose | Own scope, team, governance, SLAs and cost |
-| **Lead Data Engineer** | 9 docs plus ADRs and contracts | Build it without a meeting |
+```
+81 skills in 11 plugins. 41 first-party, every one built to the same standard
+with its own eval scenario. 40 vendored from The Data Warrior and gordonmurray.
+```
 
-Nothing gets written until the **ground gate** is filled: the decision, the
-outcome, the owner, what would prove us wrong, and the single action in one
-sentence. Then read-only reviewer subagents check each pack the way its real
-reader will.
+Browse them all in the [skill catalog](catalog/SKILLS.md).
 
 ## Install
 
-**Claude Code** (one step):
+**Claude Code**: add the marketplace once, then install the plugins you want:
 
-```
-/plugin install data-architecture-docs --marketplace Rla102277/data-architecture-docs
+```bash
+claude plugin marketplace add Rla102277/data-architecture-docs
+claude plugin install de-reverse-engineering@data-engineering-factory
+claude plugin install de-dbt@data-engineering-factory
+# ...or any plugin below
 ```
 
 **Cursor** (local plugin copy; Cursor skips symlinks):
 
 ```bash
-git clone https://github.com/Rla102277/data-architecture-docs.git ~/Documents/projects/code/data-architecture-docs
-cd ~/Documents/projects/code/data-architecture-docs
-python3 scripts/install.py cursor
+git clone https://github.com/Rla102277/data-architecture-docs.git ~/Documents/projects/code/data-engineering-factory
+cd ~/Documents/projects/code/data-engineering-factory
+python3 scripts/install.py cursor                       # everything
+python3 scripts/install.py cursor --plugins de-dbt,de-sql
 ```
 
-Then **Developer: Reload Window**. Other options (one project, Codex, picking
-plugins) are in [docs/INSTALL.md](docs/INSTALL.md).
-
-## Use
-
-Type `/architecture-docs`, or ask for "architecture docs and a TDD for this
-project". For the best first run, paste the
-[kickoff prompt](plugins/data-architecture-docs/skills/architecture-docs/KICKOFF_PROMPT.md)
-with the brief filled in. How the flow works: [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
+Then **Developer: Reload Window**. Skills-only installs for one project or for
+Codex: [docs/INSTALL.md](docs/INSTALL.md).
 
 ## Plugins
 
-| Plugin | What it gives you | Source |
+| Plugin | Skills | What it does |
 |---|---|---|
-| [data-architecture-docs](plugins/data-architecture-docs/) | 9 skills and 9 reviewer subagents for the persona-tiered doc set | This repo |
-| [data-warrior](plugins/data-warrior/) | 31 Data Warrior skills: ground the decision, study trade-offs, win the room, read the void | [The-data-warrior-agent](https://github.com/Rla102277/The-data-warrior-agent), synced |
-| [gordonmurray-data-engineering](plugins/gordonmurray-data-engineering/) | Dated expert skills for Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn, Docker Compose | [gordonmurray/data-engineering-skills](https://github.com/gordonmurray/data-engineering-skills), synced |
+| [de-reverse-engineering](plugins/de-reverse-engineering/) | 8 | Understand legacy systems without running them: catalog inventory (SQL Server, Snowflake, Fabric), stored procedure specs, SSIS and ADF/Fabric package analysis, sqlglot lineage, business rules catalog, profiling, legacy-to-dbt migration with parity |
+| [de-sql](plugins/de-sql/) | 4 | Style and review, performance tuning from plans, refactoring with parity, testing |
+| [de-dbt](plugins/de-dbt/) | 4 | Project setup, models and incrementals, tests and contracts, slim CI and deployment |
+| [de-modeling](plugins/de-modeling/) | 2 | Kimball dimensional modeling, Data Vault 2.0 with a hashing standard |
+| [de-pipelines](plugins/de-pipelines/) | 3 | Incremental ingestion (CDC, change tracking, watermarks, deletes), backfill and replay, Airflow |
+| [de-platforms](plugins/de-platforms/) | 4 | Microsoft Fabric, Snowflake, Power BI semantic models, SQL Server as a source |
+| [de-quality-ops](plugins/de-quality-ops/) | 4 | Data quality checks, GL reconciliation, observability, incident response |
+| [de-architecture-docs](plugins/de-architecture-docs/) | 9 | Persona-tiered design docs (CDO/CIO, Data Director, Lead DE) from one facts file, reviewed by read-only subagents |
+| [de-skill-factory](plugins/de-skill-factory/) | 3 | Create a new skill, upgrade a thin one, eval any skill against a baseline |
+| [data-warrior](plugins/data-warrior/) | 31 | The doctrine: ground the decision, study trade-offs, win the room, read the void (vendored from [The-data-warrior-agent](https://github.com/Rla102277/The-data-warrior-agent)) |
+| [gordonmurray-data-engineering](plugins/gordonmurray-data-engineering/) | 9 | Iceberg, Paimon, Fluss, Flink, Flink Agents, Iggy, Lance, Firn, Docker Compose (vendored from [gordonmurray/data-engineering-skills](https://github.com/gordonmurray/data-engineering-skills)) |
 
-Each installs on its own. The core plugin uses the others when they are present
-and never requires them.
+## What makes a skill here
+
+Every first-party skill meets the [skill standard](factory/SKILL_STANDARD.md),
+and CI enforces it:
+
+- a description that starts "Use when" in the words engineers type
+- **When to use, Inspect first, Procedure, Standards, Failure modes, Verify, Output**, in that order
+- real commands, queries and code, with the dialect marked; defaults with reasons
+- the Data Warrior doctrine built in: inspect before acting, observed vs assumed,
+  smallest reversible change, prove it, never invent, stop for a human on irreversible steps
+- an eval scenario that has to beat a no-skill baseline
+
+Tools that ship inside skills are tested in CI: the T-SQL-aware lineage
+extractor, the SSIS / ADF / Fabric package analyzer, the profiling SQL
+generator and the architecture docs linter.
 
 ## Repository layout
 
 ```
-data-architecture-docs/
+data-engineering-factory/
 +-- .claude-plugin/marketplace.json   # Claude Code marketplace (generated)
 +-- .cursor-plugin/marketplace.json   # Cursor marketplace (generated)
 +-- marketplace.meta.json             # Source for both marketplace files
-+-- plugins/
-|   +-- data-architecture-docs/       # First-party plugin
-|   |   +-- skills/                   # architecture-docs (orchestrator), project-facts,
-|   |   |                             #   architecture-decision, engineer-pack, director-pack,
-|   |   |                             #   executive-pack, data-contracts, validate-, review-
-|   |   +-- agents/                   # 9 read-only reviewer subagents
-|   |   +-- rules/                    # Cursor rule for docs/architecture/**
-|   |   +-- shared/conventions.md     # Canonical conventions, built into every skill
-|   |   `-- plugin.meta.json          # Source for both plugin manifests
-|   +-- data-warrior/                 # Vendored from upstream, do not edit
-|   `-- gordonmurray-data-engineering/ # Vendored from upstream, do not edit
++-- plugins/                          # One folder per plugin
+|   +-- de-*/                         # First-party: plugin.meta.json, skills/, assets/icon.png
+|   +-- data-warrior/                 # Vendored doctrine, do not edit
+|   `-- gordonmurray-data-engineering/ # Vendored, do not edit
++-- factory/
+|   +-- SKILL_STANDARD.md             # The bar every skill meets
+|   +-- doctrine.md                   # Built into every skill as references/doctrine.md
+|   `-- templates/                    # SKILL.md and eval templates
++-- catalog/                          # SKILLS.md and skills.json (generated)
++-- evals/
+|   +-- scenarios/<plugin>/<skill>.json
+|   +-- fixtures/                     # Sample legacy SQL, SSIS, ADF, bad SQL
+|   `-- results/                      # Local eval runs (git-ignored)
++-- scripts/
+|   +-- new_skill.py                  # Scaffold a skill and its eval
+|   +-- build.py                      # Generate manifests, doctrine copies, catalog
+|   +-- verify_repo.py                # Enforce the standard (CI)
+|   +-- run_evals.py                  # Run evals with and without plugins
+|   +-- sync_upstream.py              # Re-vendor upstream plugins (upstreams.json)
+|   `-- install.py                    # Cursor, Claude Code or skills-only install
++-- tests/                            # Tool and linter tests
 +-- examples/                         # Fictional worked example
 +-- docs/                             # INSTALL, HOW-IT-WORKS
-+-- scripts/
-|   +-- install.py                    # Cursor, Claude Code or skills-only install
-|   +-- build.py                      # Generate manifests and conventions copies
-|   +-- sync_upstream.py              # Re-vendor upstream plugins (upstreams.json)
-|   `-- verify_repo.py                # Structural checks, run in CI
-+-- tests/                            # Docs linter tests
-+-- .github/workflows/validate.yml    # Build check, verify, tests, install smoke tests
-+-- AGENTS.md / CLAUDE.md             # Rules for agents working on this repo
-+-- CHANGELOG.md
-`-- THIRD_PARTY_NOTICES.md
+`-- AGENTS.md / CLAUDE.md             # Rules for agents working on this repo
 ```
+
+## Make a new skill
+
+```bash
+python3 scripts/new_skill.py --plugin de-dbt --name dbt-snapshots \
+  --trigger "tracking history of mutable source tables with dbt snapshots"
+# fill in SKILL.md and evals/scenarios/de-dbt/dbt-snapshots.json, then:
+python3 scripts/build.py && python3 scripts/verify_repo.py
+python3 scripts/run_evals.py --plugin de-dbt --skill dbt-snapshots
+```
+
+Or ask your agent: "make a skill for ..." (the `create-data-skill` skill runs
+the interview and does the same steps).
 
 ## Develop
 
 ```bash
-python3 scripts/build.py            # after editing conventions or *.meta.json
-python3 scripts/verify_repo.py      # structure, names, links, manifests
+python3 scripts/build.py --check     # generated files current
+python3 scripts/verify_repo.py       # the standard, manifests, links, evals
 python3 -m unittest discover -s tests
-python3 scripts/sync_upstream.py    # pull upstream plugin changes
-claude plugin validate .            # Claude Code's own validator
-claude --plugin-dir plugins/data-architecture-docs   # try the plugin locally
+claude plugin validate .             # Claude Code's own validator
+python3 scripts/run_evals.py --dry-run
 ```
 
 ## Credits
 
-Built on ideas and files from
-[The Data Warrior](https://github.com/Rla102277/The-data-warrior-agent),
-[gordonmurray/data-engineering-skills](https://github.com/gordonmurray/data-engineering-skills),
-[vaquarkhan/data-engineering-agent-skills](https://github.com/vaquarkhan/data-engineering-agent-skills)
-and [MADR](https://github.com/adr/madr). Licenses in
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The Data Warrior doctrine and skills, gordonmurray/data-engineering-skills,
+vaquarkhan/data-engineering-agent-skills (contract templates and reviewers) and
+MADR. Licenses in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

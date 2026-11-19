@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VALIDATOR = ROOT / "plugins/data-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py"
+VALIDATOR = ROOT / "plugins/de-architecture-docs/skills/validate-architecture-docs/scripts/validate_docs.py"
 EXE = [
     "EXE-01-executive-brief.md",
     "EXE-02-strategic-architecture-overview.md",

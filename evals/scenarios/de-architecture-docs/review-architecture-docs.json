@@ -1,0 +1,17 @@
+{
+  "skill": "review-architecture-docs",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "review-docs-1",
+      "prompt": "Review the architecture docs in docs/architecture before I send them to the CIO.",
+      "fixture": null,
+      "must_include": [
+        "VERDICT",
+        "independent|perspective",
+        "cio-reader|CIO"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

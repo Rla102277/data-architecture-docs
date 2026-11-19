@@ -1,0 +1,18 @@
+{
+  "skill": "business-rule-extraction",
+  "plugin": "de-reverse-engineering",
+  "scenarios": [
+    {
+      "id": "rules-1",
+      "prompt": "Pull the business rules out of these stored procedures so finance can confirm them.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "plain|business (words|language)",
+        "line",
+        "confidence",
+        "owner|confirm"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

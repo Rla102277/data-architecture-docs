@@ -1,0 +1,21 @@
+{
+  "skill": "pipeline-incident-response",
+  "plugin": "de-quality-ops",
+  "scenarios": [
+    {
+      "id": "incident-1",
+      "prompt": "The revenue dashboard is showing double the usual numbers this morning. Help.",
+      "fixture": null,
+      "must_include": [
+        "contain|pause|stop",
+        "communicat|tell|notify",
+        "last (known )?good|when did it start",
+        "postmortem",
+        "test|monitor"
+      ],
+      "must_not_include": [
+        "\\bDELETE FROM\\b|\\bTRUNCATE\\b"
+      ]
+    }
+  ]
+}

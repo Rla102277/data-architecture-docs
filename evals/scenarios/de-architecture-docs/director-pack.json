@@ -1,0 +1,18 @@
+{
+  "skill": "director-pack",
+  "plugin": "de-architecture-docs",
+  "scenarios": [
+    {
+      "id": "dir-1",
+      "prompt": "Write the RACI and delivery plan for the data platform. We have two engineers.",
+      "fixture": null,
+      "must_include": [
+        "exit criteria",
+        "capacity|gap",
+        "\\bA\\b.*(one|single)|one accountable|single accountable",
+        "key-?person"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

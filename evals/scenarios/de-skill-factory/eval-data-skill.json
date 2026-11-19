@@ -1,0 +1,18 @@
+{
+  "skill": "eval-data-skill",
+  "plugin": "de-skill-factory",
+  "scenarios": [
+    {
+      "id": "eval-skill-1",
+      "prompt": "Prove the lineage-extraction skill actually helps.",
+      "fixture": null,
+      "must_include": [
+        "baseline",
+        "run_evals\\.py",
+        "transcript",
+        "lift"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

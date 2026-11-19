@@ -1,0 +1,18 @@
+{
+  "skill": "sql-refactoring",
+  "plugin": "de-sql",
+  "scenarios": [
+    {
+      "id": "refactor-1",
+      "prompt": "Clean up this 800-line stored procedure with a cursor before we migrate it.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "golden|freeze|baseline output",
+        "parity",
+        "set-based|window function",
+        "step"
+      ],
+      "must_not_include": []
+    }
+  ]
+}
