@@ -38,13 +38,14 @@ docs and a TDD for this project". For best results paste
 
 ```
 docs/architecture/
-  00-project-facts.yaml      single source of truth
-  README.md                  reading guide by persona
-  executive/   EXE-01..04    brief, strategic overview, investment + roadmap, risk + governance
-  director/    DIR-01..06    solution arch, operating model/RACI, governance, DQ/SLA, delivery, cost/FinOps
-  engineer/    ENG-01..09    TDD, physical model, pipeline specs, contracts, tests, CI/CD, security, runbook, standards
-               adr/          MADR-style decision records
-  shared/                    glossary, traceability matrix, RAID log
++-- 00-project-facts.yaml   # Single source of truth for every doc
++-- README.md               # Reading guide by persona, doc index, open questions
++-- executive/              # CDO/CIO: brief, strategic overview, investment + roadmap, risk
++-- director/               # Data Director: solution arch, RACI, governance, DQ/SLA, delivery, cost
++-- engineer/               # Lead DE: TDD, data model, pipelines, contracts, tests, CI/CD, security, runbook
+|   +-- adr/                # MADR-style architecture decision records
+|   `-- ENG-04-data-contracts/  # One YAML contract per data product
+`-- shared/                 # Glossary, traceability matrix, RAID log
 ```
 
 ## Validate
@@ -60,17 +61,18 @@ filler phrases. Exit code 1 on errors, so it can run in CI.
 ## Layout
 
 ```
-SKILL.md                       orchestrator (workflow, rules, length targets)
-KICKOFF_PROMPT.md              paste-ready prompt
-references/personas.md         who each reader is, voice, format, translation table
-references/doc-catalog.md      every doc, purpose, standard ADR list
-references/discovery-questions.md  interview bank with defaults
-references/stack-profiles.md   Fabric, Snowflake, Databricks, dbt, Airflow, Power BI, Data Vault 2.0
-references/diagram-standards.md    Mermaid rules and skeletons
-references/quality-gates.md    final checklist incl. persona consistency check
-assets/project-facts.template.yaml
-templates/{executive,director,engineer,shared}/
-scripts/validate_docs.py
+data-architecture-docs/
++-- SKILL.md            # Orchestrator: workflow, golden rules, length targets
++-- KICKOFF_PROMPT.md   # Paste-ready Cursor prompt with project brief
++-- references/         # Personas, doc catalog, discovery questions, stack profiles,
+|                       #   diagram standards, quality gates
++-- assets/             # project-facts.template.yaml (single source of truth)
++-- templates/          # Doc templates by persona pack
+|   +-- executive/      # CDO/CIO: EXE-01..04
+|   +-- director/       # Data Director: DIR-01..06
+|   +-- engineer/       # Lead Data Engineer: ENG-01..09, ADR, data contract
+|   `-- shared/         # Glossary, traceability matrix, RAID log
+`-- scripts/            # validate_docs.py (docs linter, CI-ready)
 ```
 
 ## Prior art worth knowing
