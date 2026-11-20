@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0 (2026-11-20)
+
+- New skill `de-quality-ops/cost-value-report`: daily cost and value report from your inputs, the factory
+  line's job history and git. Every number labeled MEASURED, ALLOCATED or ASSUMED; savings vs contractors
+  and an additional hire shown as ranges; `--install-launchd` runs it every day on macOS.
+
 ## 2.1.1 (2026-11-20)
 
 - `job.py retarget`: point a current or future stage at the repo's real paths (recorded in history).

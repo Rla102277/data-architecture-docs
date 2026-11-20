@@ -2,8 +2,8 @@
   "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
   "name": "de-quality-ops",
   "displayName": "DE: Quality and Ops",
-  "version": "1.0.0",
-  "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response.",
+  "version": "1.1.0",
+  "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response, and a daily cost and value report (factory vs contractors vs hires).",
   "author": {
     "name": "Randy Archambault"
   },
@@ -16,7 +16,8 @@
     "observability",
     "incident-response",
     "monitoring",
-    "sox"
+    "sox",
+    "cost-reporting"
   ],
   "category": "productivity",
   "icon": "./assets/icon.png"

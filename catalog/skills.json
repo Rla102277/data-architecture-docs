@@ -204,6 +204,13 @@
   },
   {
     "plugin": "de-quality-ops",
+    "skill": "cost-value-report",
+    "first_party": true,
+    "description": "Use when reporting what a data platform build is costing (AI tooling, cloud, people hours), what it has delivered, and how that compares to contractors or additional hires, on a daily or weekly schedule. Produces a dated Markdown report and a CSV where every number is labeled measured, allocated or assumed.",
+    "path": "plugins/de-quality-ops/skills/cost-value-report"
+  },
+  {
+    "plugin": "de-quality-ops",
     "skill": "data-observability",
     "first_party": true,
     "description": "Use when you need to know a pipeline or data product is broken before users do: freshness, volume, schema change and distribution monitors, pipeline run and duration monitoring, alert routing and severity, SLA tracking, lineage for impact, and dashboards, using what the platform already has (dbt artifacts, Fabric monitoring hub, Snowflake ACCOUNT_USAGE, Airflow) before buying a tool.",

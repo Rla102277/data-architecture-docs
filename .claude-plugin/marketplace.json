@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "A skill factory for data engineers: reverse engineering, modernization, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, architecture docs, a job line that pushes work through gated stages, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
-    "version": "2.1.0"
+    "version": "2.2.0"
   },
   "plugins": [
     {
@@ -60,8 +60,8 @@
     {
       "name": "de-quality-ops",
       "source": "./plugins/de-quality-ops",
-      "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response.",
-      "version": "1.0.0",
+      "description": "Keep data trustworthy in production: data quality checks with severity and quarantine, source-to-target reconciliation and financial controls, observability (freshness, volume, schema) and pipeline incident response, and a daily cost and value report (factory vs contractors vs hires).",
+      "version": "1.1.0",
       "category": "productivity"
     },
     {

@@ -9,7 +9,7 @@ quality and ops, architecture docs) and the machinery to make more of them to
 one standard and prove they work. The Data Warrior is the doctrine every skill follows.
 
 ```
-86 skills in 13 plugins and a job line. 46 first-party, every one built to the same
+87 skills in 13 plugins and a job line. 47 first-party, every one built to the same
 standard with its own eval scenario. 40 vendored from The Data Warrior and gordonmurray.
 ```
 
@@ -49,7 +49,7 @@ Codex: [docs/INSTALL.md](docs/INSTALL.md).
 | [de-modeling](plugins/de-modeling/) | 2 | Kimball dimensional modeling, Data Vault 2.0 with a hashing standard |
 | [de-pipelines](plugins/de-pipelines/) | 3 | Incremental ingestion (CDC, change tracking, watermarks, deletes), backfill and replay, Airflow |
 | [de-platforms](plugins/de-platforms/) | 4 | Microsoft Fabric, Snowflake, Power BI semantic models, SQL Server as a source |
-| [de-quality-ops](plugins/de-quality-ops/) | 4 | Data quality checks, GL reconciliation, observability, incident response |
+| [de-quality-ops](plugins/de-quality-ops/) | 5 | Data quality checks, GL reconciliation, observability, incident response, daily cost and value report |
 | [de-architecture-docs](plugins/de-architecture-docs/) | 9 | Persona-tiered design docs (CDO/CIO, Data Director, Lead DE) from one facts file, reviewed by read-only subagents |
 | [de-factory-line](plugins/de-factory-line/) | 1 + CLI | Push jobs (reimagine, reverse-engineer, build, migrate, docs, incident) through gated stages: each stage names its skill, artifacts are hashed, tests record real exit codes, reviews go stale when files change, a human approves |
 | [de-skill-factory](plugins/de-skill-factory/) | 3 | Create a new skill, upgrade a thin one, eval any skill against a baseline |

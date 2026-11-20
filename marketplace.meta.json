@@ -6,6 +6,6 @@
   },
   "metadata": {
     "description": "A skill factory for data engineers: reverse engineering, modernization, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, architecture docs, a job line that pushes work through gated stages, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
-    "version": "2.1.0"
+    "version": "2.2.0"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "skill": "cost-value-report",
+  "plugin": "de-quality-ops",
+  "scenarios": [
+    {
+      "id": "cost-value-report-1",
+      "prompt": "My CFO wants to know what this platform build is costing us in AI tools and cloud, and how much we saved vs hiring contractors. Set up a report that runs every day.",
+      "fixture": null,
+      "must_include": [
+        "time.?log|hours",
+        "baseline",
+        "assum",
+        "range|low.{0,20}high",
+        "launchd|schedul|cron"
+      ],
+      "must_not_include": [
+        "contractors (typically|usually) (cost|charge) \\$"
+      ]
+    }
+  ]
+}
