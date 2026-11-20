@@ -56,6 +56,9 @@ def install_cursor(plugins: list[Path]) -> None:
         shutil.copytree(p, dest, symlinks=False, ignore=IGNORE)
         print(f"Cursor: {p.name} -> {dest}")
     print("Next: Cursor > Developer: Reload Window, then check Customize for the plugins.")
+    job = base / "de-factory-line" / "skills" / "run-factory-job" / "scripts" / "job.py"
+    if job.exists():
+        print(f"Job line: add to ~/.zshrc ->  alias job='python3 {job}'")
 
 
 def install_claude(plugins: list[Path]) -> None:

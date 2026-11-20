@@ -1,0 +1,19 @@
+{
+  "skill": "migration-roadmap",
+  "plugin": "de-modernization",
+  "scenarios": [
+    {
+      "id": "roadmap-1",
+      "prompt": "We picked Fabric with dbt as the target. Plan the migration off the old warehouse.",
+      "fixture": null,
+      "must_include": [
+        "wave",
+        "parallel run|run in parallel|parity",
+        "rollback",
+        "decommission|retire|turn off",
+        "month.?end|close"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

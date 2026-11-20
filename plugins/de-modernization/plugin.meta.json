@@ -1,0 +1,23 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-modernization",
+  "displayName": "DE: Modernization",
+  "version": "1.0.0",
+  "description": "Look at an existing data system and design a whole new way: assess the current state with evidence, design clean-sheet target options from the decisions the system serves (not its legacy shape), choose with ADRs, and plan the move in waves with parity, cutover and decommissioning.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "modernization",
+    "re-architecture",
+    "migration",
+    "target-state",
+    "roadmap",
+    "legacy"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

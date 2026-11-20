@@ -1,0 +1,23 @@
+{
+  "_comment": "Source for both plugin manifests. Edit here, then run: python3 scripts/build.py",
+  "name": "de-factory-line",
+  "displayName": "DE: Factory Line",
+  "version": "1.0.0",
+  "description": "The factory line: push data engineering jobs (reimagine, reverse-engineer, build, migrate, docs, incident) through stages that name the skill to use, with recorded evidence, real test exit codes, reviews that go stale when files change, and a human approval gate. One standard-library Python CLI; state lives in the repo under .factory/.",
+  "author": {
+    "name": "Randy Archambault"
+  },
+  "homepage": "https://github.com/Rla102277/data-architecture-docs",
+  "repository": "https://github.com/Rla102277/data-architecture-docs",
+  "license": "MIT",
+  "keywords": [
+    "jobs",
+    "workflow",
+    "evidence",
+    "approval",
+    "factory",
+    "orchestration"
+  ],
+  "category": "productivity",
+  "icon": "./assets/icon.png"
+}

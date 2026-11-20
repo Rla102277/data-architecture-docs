@@ -1,0 +1,19 @@
+{
+  "skill": "target-state-options",
+  "plugin": "de-modernization",
+  "scenarios": [
+    {
+      "id": "options-1",
+      "prompt": "Design the future state for our data platform. We own Fabric and Power BI.",
+      "fixture": null,
+      "must_include": [
+        "status quo",
+        "evolve|re-?platform|reimagine",
+        "steelman|strongest",
+        "operate|team",
+        "decision"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

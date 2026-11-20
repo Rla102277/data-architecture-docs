@@ -14,6 +14,30 @@ flowchart LR
   upgrade --> eval
 ```
 
+## Two halves: skills and the line
+
+- **Skills** carry the know-how: how a senior engineer reverse engineers a proc,
+  builds an incremental model, or plans a migration.
+- **The line** (`de-factory-line`, `job.py`) carries the discipline: a job moves
+  through stages defined in `job-types.json`; each stage names its skill and the
+  files it must leave. Gates: **test** (a recorded exit code 0 after the stage's
+  latest change), **review** (a PASS review; stale if any covered file changes),
+  **human** (only `approve --authorized`, which re-checks earlier tests and
+  reviews). State, hashes and logs live in the work repo under `.factory/`.
+
+```mermaid
+flowchart LR
+  new[job new] --> next[job next: stage, skill, outputs, gate]
+  next --> work[Do the stage with its skill]
+  work --> gate{Gate}
+  gate -->|none| push[job push]
+  gate -->|test| test[job test -- cmd] --> push
+  gate -->|review| review[job review] --> push
+  gate -->|human| stop[STOP: human approves] --> approve[job approve --authorized]
+  push --> next
+  approve --> next
+```
+
 ## Layers
 
 | Layer | Where | Role |

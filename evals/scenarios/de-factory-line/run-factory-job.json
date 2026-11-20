@@ -1,0 +1,19 @@
+{
+  "skill": "run-factory-job",
+  "plugin": "de-factory-line",
+  "scenarios": [
+    {
+      "id": "job-1",
+      "prompt": "Push the reimagine of this legacy warehouse through the factory as a job.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "job\\.py (init|new)",
+        "reimagine",
+        "next",
+        "human|approv",
+        "push"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

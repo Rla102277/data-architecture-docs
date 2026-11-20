@@ -1,0 +1,19 @@
+{
+  "skill": "reimagine-data-system",
+  "plugin": "de-modernization",
+  "scenarios": [
+    {
+      "id": "reimagine-1",
+      "prompt": "Look at this old SQL Server and SSIS system and come up with a whole new way to do it.",
+      "fixture": "evals/fixtures/legacy-warehouse",
+      "must_include": [
+        "single action|ground|decision",
+        "reverse engineer|inventory",
+        "option",
+        "wave|roadmap",
+        "retire|decommission"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

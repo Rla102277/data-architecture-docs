@@ -1,0 +1,19 @@
+{
+  "skill": "current-state-assessment",
+  "plugin": "de-modernization",
+  "scenarios": [
+    {
+      "id": "assess-1",
+      "prompt": "Assess our current reporting warehouse before we decide whether to replace it.",
+      "fixture": null,
+      "must_include": [
+        "evidence",
+        "keep|rebuild|replace|retire",
+        "interview|consumer",
+        "cause|symptom",
+        "key-?person"
+      ],
+      "must_not_include": []
+    }
+  ]
+}

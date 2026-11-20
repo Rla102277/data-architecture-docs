@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.0 (2026-11-20): Modernization and the job line
+
+- **de-modernization** (4 skills): `reimagine-data-system` (look at a system and
+  design a whole new way, end to end), `current-state-assessment`,
+  `target-state-options` (evolve / re-platform / reimagine plus status quo,
+  designed backward from decisions), `migration-roadmap` (waves, parity,
+  cutover, decommission, kill criteria).
+- **de-factory-line**: `job.py`, a standard-library job line. Job types
+  reimagine, reverse-engineer, build, migrate, docs and incident; stages name
+  their skill and required files; test, review and human gates; SHA-256 artifact
+  hashes; reviews go stale on change; tamper check on test logs; `.factory/BOARD.md`.
+  Skill `run-factory-job` teaches the agent to drive it and stop for humans.
+- 86 skills in 13 plugins; 20 tests.
+
 ## 2.0.0 (2026-11-19): Data Engineering Factory
 
 Rewritten from a single docs plugin into a skill factory for data engineers.

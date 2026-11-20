@@ -1,0 +1,83 @@
+{
+  "_comment": "Job types for the factory line. Each stage names the skill that does the work, the files it must leave (globs; {id} is the job id), an optional gate (test | review | human) and whether it may be skipped with a reason.",
+  "types": {
+    "reimagine": {
+      "description": "Look at an existing data system and design a whole new way, through to an approved target, roadmap and doc set.",
+      "stages": [
+        {"id": "ground", "skill": "project-facts", "outputs": ["docs/architecture/00-project-facts.yaml"]},
+        {"id": "understand", "skill": "reverse-engineer-data-system", "outputs": ["docs/reverse-engineering/system-map.md", "docs/reverse-engineering/open-questions.md"]},
+        {"id": "assess", "skill": "current-state-assessment", "outputs": ["docs/reimagine/01-assessment.md", "docs/reimagine/dispositions.csv"]},
+        {"id": "options", "skill": "target-state-options", "outputs": ["docs/reimagine/02-options.md", "docs/reimagine/03-target-architecture.md"]},
+        {"id": "choose", "skill": "target-state-options", "outputs": [], "gate": "human", "note": "Owner picks the option. Record the choice in the approval note."},
+        {"id": "decide", "skill": "architecture-decision", "outputs": ["docs/architecture/engineer/adr/ADR-*.md"]},
+        {"id": "roadmap", "skill": "migration-roadmap", "outputs": ["docs/reimagine/04-roadmap.md"]},
+        {"id": "docs", "skill": "architecture-docs", "outputs": ["docs/architecture/README.md"], "gate": "test", "note": "Test: the validate_docs.py linter on docs/architecture."},
+        {"id": "review", "skill": "review-architecture-docs", "outputs": ["docs/architecture/reviews/*.md"], "gate": "review"},
+        {"id": "approve", "skill": null, "outputs": [], "gate": "human"}
+      ]
+    },
+    "reverse-engineer": {
+      "description": "Understand a legacy data system without running it.",
+      "stages": [
+        {"id": "ground", "skill": "project-facts", "outputs": [".factory/jobs/{id}/ground.md"], "note": "Why are we reverse engineering this, and what decision does it serve?"},
+        {"id": "inventory", "skill": "sql-object-inventory", "outputs": ["docs/reverse-engineering/inventory/README.md"]},
+        {"id": "etl", "skill": "etl-package-analysis", "outputs": ["docs/reverse-engineering/etl/summary.csv"], "optional": true},
+        {"id": "lineage", "skill": "lineage-extraction", "outputs": ["docs/reverse-engineering/lineage/edges.csv", "docs/reverse-engineering/lineage/unparsed.md"]},
+        {"id": "procs", "skill": "stored-procedure-analysis", "outputs": ["docs/reverse-engineering/procs/*.md"], "optional": true},
+        {"id": "rules", "skill": "business-rule-extraction", "outputs": ["docs/reverse-engineering/rules/rules-catalog.md"]},
+        {"id": "profile", "skill": "data-profiling", "outputs": ["docs/reverse-engineering/profiles/*.md"], "optional": true},
+        {"id": "map", "skill": "reverse-engineer-data-system", "outputs": ["docs/reverse-engineering/system-map.md", "docs/reverse-engineering/open-questions.md"]},
+        {"id": "review", "skill": null, "outputs": [], "gate": "review"},
+        {"id": "approve", "skill": null, "outputs": [], "gate": "human"}
+      ]
+    },
+    "build": {
+      "description": "Build or change a pipeline, model or SQL object, proven by tests and reviewed before approval.",
+      "stages": [
+        {"id": "spec", "skill": "to-spec", "outputs": [".factory/jobs/{id}/spec.md"], "note": "Decision served, grain, proof criteria, what is out of scope."},
+        {"id": "steps", "skill": "to-steps", "outputs": [".factory/jobs/{id}/steps.md"], "optional": true},
+        {"id": "build", "skill": "dbt-model-development", "outputs": [], "note": "Use the skill that fits: dbt-model-development, incremental-ingestion, sql-refactoring, ..."},
+        {"id": "test", "skill": "sql-testing", "outputs": [], "gate": "test"},
+        {"id": "review", "skill": "sql-style-and-review", "outputs": [".factory/jobs/{id}/review-*.md"], "gate": "review"},
+        {"id": "approve", "skill": null, "outputs": [], "gate": "human"},
+        {"id": "deploy", "skill": "dbt-ci-and-deployment", "outputs": [], "gate": "human", "note": "Record where and how it was deployed in the approval note."}
+      ]
+    },
+    "migrate": {
+      "description": "Move one subject area from legacy code to the new platform with parity and a safe cutover.",
+      "stages": [
+        {"id": "ground", "skill": "project-facts", "outputs": [".factory/jobs/{id}/ground.md"]},
+        {"id": "map", "skill": "legacy-to-dbt-migration", "outputs": ["migration/*/mapping.md"]},
+        {"id": "build", "skill": "dbt-model-development", "outputs": []},
+        {"id": "parity", "skill": "sql-testing", "outputs": [], "gate": "test", "note": "Test: parity queries return zero mismatches or every difference is explained."},
+        {"id": "parallel-run", "skill": "data-reconciliation", "outputs": ["migration/*/parity/*.md"], "gate": "test"},
+        {"id": "review", "skill": null, "outputs": [], "gate": "review"},
+        {"id": "approve", "skill": null, "outputs": [], "gate": "human"},
+        {"id": "cutover", "skill": "migration-roadmap", "outputs": [], "gate": "human"},
+        {"id": "decommission", "skill": "migration-roadmap", "outputs": [], "gate": "human", "note": "Disable, wait, archive, remove: each step approved."}
+      ]
+    },
+    "docs": {
+      "description": "Write the persona-tiered architecture doc set.",
+      "stages": [
+        {"id": "ground", "skill": "project-facts", "outputs": ["docs/architecture/00-project-facts.yaml"]},
+        {"id": "decide", "skill": "architecture-decision", "outputs": ["docs/architecture/engineer/adr/ADR-*.md"]},
+        {"id": "packs", "skill": "architecture-docs", "outputs": ["docs/architecture/README.md"]},
+        {"id": "validate", "skill": "validate-architecture-docs", "outputs": [], "gate": "test"},
+        {"id": "review", "skill": "review-architecture-docs", "outputs": ["docs/architecture/reviews/*.md"], "gate": "review"},
+        {"id": "approve", "skill": null, "outputs": [], "gate": "human"}
+      ]
+    },
+    "incident": {
+      "description": "Handle a broken pipeline or wrong data from containment to postmortem.",
+      "stages": [
+        {"id": "contain", "skill": "pipeline-incident-response", "outputs": [".factory/jobs/{id}/incident-log.md"]},
+        {"id": "fix", "skill": "pipeline-incident-response", "outputs": []},
+        {"id": "test", "skill": "sql-testing", "outputs": [], "gate": "test", "note": "The new test that reproduces the incident must pass."},
+        {"id": "repair", "skill": "backfill-and-replay", "outputs": [], "gate": "human"},
+        {"id": "postmortem", "skill": "pipeline-incident-response", "outputs": [".factory/jobs/{id}/postmortem.md"], "gate": "review"},
+        {"id": "close", "skill": null, "outputs": [], "gate": "human"}
+      ]
+    }
+  }
+}

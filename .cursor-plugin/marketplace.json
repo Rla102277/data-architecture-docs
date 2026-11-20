@@ -4,14 +4,21 @@
     "name": "Randy Archambault"
   },
   "metadata": {
-    "description": "A skill factory for data engineers: reverse engineering, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, persona-tiered architecture docs, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
-    "version": "2.0.0"
+    "description": "A skill factory for data engineers: reverse engineering, modernization, SQL, dbt, modeling, pipelines, Fabric, Snowflake, Power BI, quality and ops, architecture docs, a job line that pushes work through gated stages, and the tooling to create and eval new skills. The Data Warrior is the doctrine.",
+    "version": "2.1.0"
   },
   "plugins": [
     {
       "name": "de-reverse-engineering",
       "source": "./plugins/de-reverse-engineering",
       "description": "Reverse engineer legacy data systems without running them: SQL Server, Snowflake and Fabric catalog inventory, stored procedure specs, SSIS and ADF/Fabric pipeline analysis, sqlglot table lineage, business rules catalog, profiling, and legacy-to-dbt migration with parity testing.",
+      "version": "1.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-modernization",
+      "source": "./plugins/de-modernization",
+      "description": "Look at an existing data system and design a whole new way: assess the current state with evidence, design clean-sheet target options from the decisions the system serves (not its legacy shape), choose with ADRs, and plan the move in waves with parity, cutover and decommissioning.",
       "version": "1.0.0",
       "category": "productivity"
     },
@@ -62,6 +69,13 @@
       "source": "./plugins/de-architecture-docs",
       "description": "Persona-tiered design docs for data platforms: architecture overview, TDD, ADRs, data model, pipeline specs, contracts, governance, delivery and cost, for the CDO/CIO, the Data Director and the Lead Data Engineer, from one facts file, reviewed by read-only subagents.",
       "version": "2.0.0",
+      "category": "productivity"
+    },
+    {
+      "name": "de-factory-line",
+      "source": "./plugins/de-factory-line",
+      "description": "The factory line: push data engineering jobs (reimagine, reverse-engineer, build, migrate, docs, incident) through stages that name the skill to use, with recorded evidence, real test exit codes, reviews that go stale when files change, and a human approval gate. One standard-library Python CLI; state lives in the repo under .factory/.",
+      "version": "1.0.0",
       "category": "productivity"
     },
     {

@@ -19,6 +19,8 @@ Read README.md, `factory/SKILL_STANDARD.md` and `docs/HOW-IT-WORKS.md`.
   Failure modes, Verify, Output in order; doctrine link; under 500 lines; an
   eval scenario in `evals/scenarios/<plugin>/<skill>.json`.
 - **New skills** start from `python3 scripts/new_skill.py`.
+- **Job types** live in `plugins/de-factory-line/skills/run-factory-job/assets/job-types.json`;
+  every stage's skill must exist (tests enforce it). Never weaken a gate to make a job pass.
 - **Never hand-edit vendored plugins.** Change upstream, then
   `python3 scripts/sync_upstream.py <plugin>`.
 - **Never hand-edit generated files**: marketplace and plugin manifests,

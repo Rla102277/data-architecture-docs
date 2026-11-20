@@ -27,8 +27,8 @@ PLUGINS = ROOT / "plugins"
 DOCTRINE = ROOT / "factory" / "doctrine.md"
 MARKET = ROOT / "marketplace.meta.json"
 ORDER = [
-    "de-reverse-engineering", "de-sql", "de-dbt", "de-modeling", "de-pipelines",
-    "de-platforms", "de-quality-ops", "de-architecture-docs", "de-skill-factory",
+    "de-reverse-engineering", "de-modernization", "de-sql", "de-dbt", "de-modeling", "de-pipelines",
+    "de-platforms", "de-quality-ops", "de-architecture-docs", "de-factory-line", "de-skill-factory",
     "data-warrior", "gordonmurray-data-engineering",
 ]
 

@@ -56,6 +56,34 @@
     "path": "plugins/de-reverse-engineering/skills/stored-procedure-analysis"
   },
   {
+    "plugin": "de-modernization",
+    "skill": "current-state-assessment",
+    "first_party": true,
+    "description": "Use when an existing data platform, warehouse, ETL estate or reporting stack must be judged before deciding what to do with it: fitness scores with evidence (trust, freshness, cost, operability, change speed, security, key-person risk, adoption), pain gathered from consumers and operators, root causes vs symptoms, and a keep / rebuild / replace / retire disposition for every object.",
+    "path": "plugins/de-modernization/skills/current-state-assessment"
+  },
+  {
+    "plugin": "de-modernization",
+    "skill": "migration-roadmap",
+    "first_party": true,
+    "description": "Use when a target data architecture is chosen and the move must be planned: waves by data product and consumer (strangler pattern), a small first wave that proves the pattern, parallel runs and parity gates, cutover and rollback per wave, decommissioning legacy objects with evidence, capacity and dependencies, and kill criteria.",
+    "path": "plugins/de-modernization/skills/migration-roadmap"
+  },
+  {
+    "plugin": "de-modernization",
+    "skill": "reimagine-data-system",
+    "first_party": true,
+    "description": "Use when someone wants to look at an existing data system and come up with a whole new way to do it: modernize, re-architect, re-platform or replace a legacy warehouse, ETL estate, reporting stack or data platform. Runs the full pass from evidence to decision: reverse engineer, assess the current state, design clean-sheet target options from the decisions the system serves, choose with ADRs, plan the move in waves, and produce the persona doc set.",
+    "path": "plugins/de-modernization/skills/reimagine-data-system"
+  },
+  {
+    "plugin": "de-modernization",
+    "skill": "target-state-options",
+    "first_party": true,
+    "description": "Use when designing what a data system should become: clean-sheet target architecture options built backward from the decisions and data products people need, not from the legacy shape. Produces at least three genuinely different options (evolve, re-platform, reimagine) plus the status quo, scored on value, cost, risk and team fit, with steelmen, a recommendation and the target architecture with diagrams and what disappears.",
+    "path": "plugins/de-modernization/skills/target-state-options"
+  },
+  {
     "plugin": "de-sql",
     "skill": "sql-performance-tuning",
     "first_party": true,
@@ -264,6 +292,13 @@
     "first_party": true,
     "description": "Use when a data architecture doc set has been written or changed and must be checked before review or hand-off: runs the docs linter (missing docs, empty ground gate, front matter, placeholders, undefined IDs, untagged assumptions, Mermaid fences, exec word ceilings, review verdicts) and walks the persona consistency, decision and wind-pattern gates.",
     "path": "plugins/de-architecture-docs/skills/validate-architecture-docs"
+  },
+  {
+    "plugin": "de-factory-line",
+    "skill": "run-factory-job",
+    "first_party": true,
+    "description": "Use when work should go through the factory line as a tracked job: \"start a job\", \"push this through the factory\", \"reimagine this system as a job\", \"what's the status of JOB-0003\", \"approve\", or any reimagine, reverse-engineer, build, migrate, docs or incident work that needs evidence, tests, reviews and a human approval gate. Drives job.py: create the job, do each stage with its skill, record tests and reviews, push, and stop for a human.",
+    "path": "plugins/de-factory-line/skills/run-factory-job"
   },
   {
     "plugin": "de-skill-factory",
