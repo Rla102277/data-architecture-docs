@@ -33,6 +33,8 @@ Not for: reviewing content quality (use `review-architecture-docs`).
    ```bash
    python3 <this-skill-dir>/scripts/validate_docs.py docs/architecture
    python3 <this-skill-dir>/scripts/validate_docs.py docs/architecture --packs executive
+   # doc set in a subfolder, facts file kept at a single shared path:
+   python3 <this-skill-dir>/scripts/validate_docs.py docs/architecture/mdip --facts docs/architecture/00-project-facts.yaml
    ```
    It fails on missing docs, a missing facts file, an empty `ground.single_action`,
    missing front matter, `{{...}}` placeholders, `lorem`, `TBD` without an ID,

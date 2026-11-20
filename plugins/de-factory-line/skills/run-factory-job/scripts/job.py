@@ -15,6 +15,8 @@ so it is versioned with the work.
     job.py review JOB-0001 --verdict PASS --by "lead-engineer-reader" [--file r.md] [--independent]
     job.py approve JOB-0001 --by "Randy Archambault" --authorized [--note "..."]
     job.py block JOB-0001 --reason "..." | unblock JOB-0001
+    job.py retarget JOB-0001 --stage review --outputs "docs/x/reviews/*.md" --reason "..."
+                                                   # point a current or future stage at the repo's real paths
     job.py verify JOB-0001                         # re-hash evidence, report changed or missing files
     job.py show JOB-0001
 
@@ -369,6 +371,22 @@ def cmd_approve(args, line: Line) -> int:
     return cmd_next(argparse.Namespace(id=job["id"]), line)
 
 
+def cmd_retarget(args, line: Line) -> int:
+    job = line.load(args.id)
+    ids = [s["id"] for s in job["stages"]]
+    if args.stage not in ids:
+        sys.exit(f"No stage {args.stage}. Stages: {', '.join(ids)}")
+    i = ids.index(args.stage)
+    if i < job["stage_index"]:
+        sys.exit(f"Stage {args.stage} is already passed; only current or future stages can be retargeted")
+    old = job["stages"][i].get("outputs", [])
+    job["stages"][i] = dict(job["stages"][i], outputs=args.outputs)
+    event(job, "retargeted", actor(), target_stage=args.stage, old=old, new=args.outputs, reason=args.reason)
+    line.save(job)
+    print(f"{job['id']}: {args.stage} outputs {old} -> {args.outputs} ({args.reason})")
+    return 0
+
+
 def cmd_block(args, line: Line) -> int:
     job = line.load(args.id)
     job["status"] = "blocked"
@@ -445,6 +463,8 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("push"); p.add_argument("id"); p.add_argument("--note")
     p = sub.add_parser("skip"); p.add_argument("id"); p.add_argument("--reason", required=True)
     p = sub.add_parser("block"); p.add_argument("id"); p.add_argument("--reason", required=True)
+    p = sub.add_parser("retarget"); p.add_argument("id"); p.add_argument("--stage", required=True)
+    p.add_argument("--outputs", nargs="+", required=True); p.add_argument("--reason", required=True)
     p = sub.add_parser("test"); p.add_argument("id"); p.add_argument("command", nargs=argparse.REMAINDER)
     p = sub.add_parser("review"); p.add_argument("id")
     p.add_argument("--verdict", choices=["PASS", "CHANGES"], required=True)
@@ -463,7 +483,7 @@ def main(argv: list[str] | None = None) -> int:
     line = Line(root)
     return {"new": cmd_new, "list": cmd_list, "board": cmd_board, "next": cmd_next, "show": cmd_show,
             "verify": cmd_verify, "push": cmd_push, "skip": cmd_skip, "block": cmd_block,
-            "unblock": cmd_unblock, "test": cmd_test, "review": cmd_review,
+            "unblock": cmd_unblock, "retarget": cmd_retarget, "test": cmd_test, "review": cmd_review,
             "approve": cmd_approve}[args.cmd](args, line)
 
 

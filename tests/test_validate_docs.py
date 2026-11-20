@@ -74,6 +74,20 @@ class ValidateDocsTest(unittest.TestCase):
             r = run(Path(d))
             self.assertEqual(r.returncode, 0, r.stdout)
 
+    def test_facts_outside_root(self) -> None:
+        with tempfile.TemporaryDirectory() as d:
+            build(Path(d))
+            facts = Path(d) / "00-project-facts.yaml"
+            moved = Path(d).parent / (Path(d).name + "-facts.yaml")
+            facts.rename(moved)
+            try:
+                self.assertEqual(run(Path(d)).returncode, 1)
+                r = subprocess.run([sys.executable, "-I", str(VALIDATOR), d, "--packs", "executive", "--facts", str(moved)],
+                                   capture_output=True, text=True)
+                self.assertEqual(r.returncode, 0, r.stdout)
+            finally:
+                moved.unlink()
+
     def test_undefined_id_fails(self) -> None:
         with tempfile.TemporaryDirectory() as d:
             build(Path(d), brief_body="Depends on NFR-009.")

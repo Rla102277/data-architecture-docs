@@ -3,7 +3,7 @@
 
 Usage:
     python3 validate_docs.py docs/architecture [--packs executive,director,engineer]
-                                               [--allow-em-dash]
+                                               [--allow-em-dash] [--facts path/to/00-project-facts.yaml]
 
 Standard library only. Exit code 1 if any ERROR is found.
 """
@@ -83,9 +83,9 @@ def strip_code(text: str) -> str:
     return re.sub(r"```.*?```", "", text, flags=re.S)
 
 
-def defined_ids(root: Path, docs: dict[Path, str]) -> set[str]:
+def defined_ids(root: Path, docs: dict[Path, str], facts: Path | None = None) -> set[str]:
     ids: set[str] = set()
-    facts = root / "00-project-facts.yaml"
+    facts = facts or (root / "00-project-facts.yaml")
     if facts.exists():
         for m in re.finditer(r"id:\s*([A-Z]{1,3}-\d{3,4})", facts.read_text(encoding="utf-8")):
             ids.add(m.group(1))
@@ -115,6 +115,7 @@ def main() -> int:
     ap.add_argument("root", type=Path)
     ap.add_argument("--packs", default="executive,director,engineer,shared")
     ap.add_argument("--allow-em-dash", action="store_true")
+    ap.add_argument("--facts", type=Path, help="facts file outside the doc root (default: <root>/00-project-facts.yaml)")
     args = ap.parse_args()
     root: Path = args.root
     rep = Report()
@@ -133,7 +134,7 @@ def main() -> int:
                 rep.err("engineer/adr", "no ADRs found")
             if not list((root / "engineer" / "ENG-04-data-contracts").glob("*.y*ml")):
                 rep.warn("engineer/ENG-04-data-contracts", "no data contract YAML files")
-    facts_path = root / "00-project-facts.yaml"
+    facts_path = args.facts or (root / "00-project-facts.yaml")
     if not facts_path.exists():
         rep.err("00-project-facts.yaml", "facts file missing")
     else:
@@ -155,7 +156,7 @@ def main() -> int:
         rep.warn("README.md", "reading guide missing")
 
     docs = {p: p.read_text(encoding="utf-8") for p in root.rglob("*.md")}
-    ids = defined_ids(root, docs)
+    ids = defined_ids(root, docs, args.facts)
 
     for path, text in sorted(docs.items()):
         rel = str(path.relative_to(root))

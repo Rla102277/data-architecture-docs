@@ -78,6 +78,16 @@ class JobLineTest(unittest.TestCase):
         self.assertEqual(self.run_job("approve", "JOB-0001", "--by", "Randy", "--authorized").returncode, 0)
         self.assertEqual(self.job()["approvals"][0]["by"], "Randy")
 
+    def test_retarget_future_stage_only(self) -> None:
+        r = self.run_job("retarget", "JOB-0001", "--stage", "review", "--outputs", "docs/x/reviews/*.md", "--reason", "repo layout")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        stages = {s["id"]: s for s in self.job()["stages"]}
+        self.assertEqual(stages["review"]["outputs"], ["docs/x/reviews/*.md"])
+        self.assertEqual(self.job()["history"][-1]["event"], "retargeted")
+        self.write(".factory/jobs/JOB-0001/spec.md", "spec")
+        self.run_job("push", "JOB-0001")
+        self.assertNotEqual(self.run_job("retarget", "JOB-0001", "--stage", "spec", "--outputs", "x", "--reason", "y").returncode, 0)
+
     def test_only_optional_stages_skip(self) -> None:
         self.assertNotEqual(self.run_job("skip", "JOB-0001", "--reason", "x").returncode, 0)
 

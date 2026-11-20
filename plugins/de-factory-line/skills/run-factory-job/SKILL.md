@@ -68,6 +68,11 @@ use the relevant skill directly).
    without asking.
 6. If blocked (waiting on access, an owner, a decision): `job.py block <ID> --reason "..."`.
    Resume with `unblock`.
+7. If the repo keeps its docs somewhere other than the job type's default paths
+   (for example `docs/architecture/<product>/`), point the current or a future
+   stage at the real paths before doing it:
+   `job.py retarget <ID> --stage <stage> --outputs "<glob>" ... --reason "<why>"`.
+   Never retarget to dodge a gate; the change is recorded in the job history.
 
 If a Data Warrior skill mentions the Forge CLI (`forge job ...`), use `job.py`
 for the same step instead.

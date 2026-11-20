@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1 (2026-11-20)
+
+- `job.py retarget`: point a current or future stage at the repo's real paths (recorded in history).
+- `validate_docs.py --facts`: validate a doc set in a subfolder against one shared facts file.
+
 ## 2.1.0 (2026-11-20): Modernization and the job line
 
 - **de-modernization** (4 skills): `reimagine-data-system` (look at a system and
